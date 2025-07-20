@@ -45,8 +45,8 @@ export const { POST } = serve<InitialData>(async (context) => {
   await context.run("new-signup", async () => {
     await sendEmail({
       email,
-      subject: "Welcome to the platform",
-      message: `Welcome ${fullName}!`,
+      subject: "Welcome to the NextWizard!",
+      message: `Welcome ${fullName}!\nThank you for signing up! We are excited to have you on board.\nWe will send you an email when we approve your account so you can get starting and create your full stack web application  \n In the mean time feel free to explore our features and let us know if you have any questions.`,
     });
   });
 
