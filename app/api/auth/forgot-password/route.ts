@@ -5,6 +5,7 @@ import { addHours } from 'date-fns';
 import { sendEmail } from '@/lib/workflow';
 import { db } from '@/database/drizzle';
 import { users } from '@/database/schema';
+import config from '@/lib/config';
 
 export async function POST(req: Request) {
   const { email } = await req.json();
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
     .set({ passwordResetToken: token, passwordResetExpires: expires })
     .where(eq(users.id, user.id));
 
-  const resetLink = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${token}`;
+  const resetLink = `${config.env.prodApiEndpoint}/reset-password?token=${token}`;
 
   await sendEmail({
     email,
