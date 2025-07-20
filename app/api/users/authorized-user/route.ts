@@ -3,7 +3,7 @@ import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
-import { use } from "react";
+
 
 export async function GET() {
     const session = await auth()

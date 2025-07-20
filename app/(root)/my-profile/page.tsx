@@ -1,20 +1,21 @@
 "use client";
 
 import useSWR from 'swr';
-import { mutate } from 'swr';
 import { signOut } from "next-auth/react";
 import React, { useState } from "react";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogFooter, DialogTitle } from '@/components/ui/dialog';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { gitInitials } from '@/lib/utils';
 
+
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const MyProfile = () => {
+    
     
     const { data: currentUser, error, isLoading, mutate } = useSWR('/api/users/authorized-user', fetcher, {
         refreshInterval: 3000,
@@ -30,9 +31,12 @@ const MyProfile = () => {
     
     const handleSignOut = async () => {
         try {
-            const result = await signOut({ redirect: false });
-             mutate('/api/users/authorized-user', ); // clears currentUser
-            router.push('/');
+            mutate('/api/users/authorized-user', false); // Optionally mutate the SWR cache    
+            await signOut({ redirect: false });
+            router.push('/'); // Redirect to home page after sign out
+            redirect('/');
+           
+            
         } catch (error) {
             console.error("Error signing out:", error);
         }
@@ -54,7 +58,7 @@ const MyProfile = () => {
                     className="object-cover rounded-full"
                     />
                 ) : (
-                    <AvatarFallback className="bg-amber-100 text-black text-xl font-bold">
+                    <AvatarFallback className="bg-amber-100 text-black text-6xl font-bold">
                     {gitInitials(currentUser?.fullName)}
                     </AvatarFallback>
                 )}
@@ -64,11 +68,11 @@ const MyProfile = () => {
 
 
         {/* Info Section */}
-        <div className="text-center space-y-3 text-white ">
+        {!isLoading && currentUser && <div className="text-center space-y-3 text-white ">
           <h2 className="text-2xl font-semibold">{currentUser?.fullName}</h2>
-          <p className="text-sm text-gray-200">@{currentUser?.username}</p>
+          {currentUser?.fullName && <p className="text-sm text-gray-200">@{currentUser?.username || currentUser?.fullName.toLowerCase().replace(/\s+/g, '') }</p>}
           <p className="text-sm text-gray-300">{currentUser?.email}</p>
-        </div>
+        </div>}
 
         {/* Sign Out Button */}
         <div className="flex justify-center items-center h-1/2">

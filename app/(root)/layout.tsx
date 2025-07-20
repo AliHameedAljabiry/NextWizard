@@ -32,7 +32,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <main className="root-container">
-        <Header />
+        <Header ifUser={session?.user?.id as string}/>
         <div className="">{children}</div>
     </main>
   );

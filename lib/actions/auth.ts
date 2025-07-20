@@ -82,5 +82,3 @@ export const signUp = async (params: AuthCredentials) => {
   }
 };
 
-
-//const { fullName, email, password, companyName} = params;
