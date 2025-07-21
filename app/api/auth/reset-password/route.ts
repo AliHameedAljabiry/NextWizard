@@ -25,9 +25,7 @@ export async function POST(req: Request) {
         )
       );
 
-    if (!user) {
-      return Response.json({ message: 'Invalid or expired token' }, { status: 400 });
-    }
+    
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
