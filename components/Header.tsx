@@ -37,8 +37,8 @@ const Header =  (ifUser: {ifUser: string}) => {
             <Link href="/" className={cn('text-lg font-medium hover:text-primary', pathname === '/' && 'text-primary' )}>Home</Link>
             <Link href="/about" className={cn('text-lg font-medium hover:text-primary', pathname === '/about' && 'text-primary')}>About</Link>
             <Link href="/contact" className={cn('text-lg font-medium hover:text-primary', pathname === '/contact' && 'text-primary')}>Contact</Link>
-            <Link href="/sign-in" className={cn('text-lg font-medium hover:text-primary', pathname === '/login' && 'text-primary')}>Login</Link>
-            <Link href="/sign-up" className={cn('text-lg font-medium hover:text-primary', pathname === '/register' && 'text-primary')}>Register</Link>
+            {!currentUser?.id && <Link href="/sign-in" className={cn('text-lg font-medium hover:text-primary', pathname === '/login' && 'text-primary')}>Login</Link>}
+            {!currentUser?.id &&<Link href="/sign-up" className={cn('text-lg font-medium hover:text-primary', pathname === '/register' && 'text-primary')}>Register</Link>}
             { currentUser?.id &&  <Link href='/my-profile' className={cn('text-lg font-medium hover:text-primary', pathname === '/my-profile' && 'text-primary')}>
               <Avatar className='size-8'>
                       {currentUser?.image ? (<Image 
