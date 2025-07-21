@@ -10,6 +10,7 @@ import { DialogTrigger } from '@radix-ui/react-dialog';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { gitInitials } from '@/lib/utils';
+import { mutate } from 'swr';
 
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
@@ -17,7 +18,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 const MyProfile = () => {
     
     
-    const { data: currentUser, error, isLoading, mutate } = useSWR('/api/users/authorized-user', fetcher, {
+    const { data: currentUser, error, isLoading} = useSWR('/api/users/authorized-user', fetcher, {
         refreshInterval: 3000,
         revalidateOnFocus: true,
         revalidateOnReconnect: true,
@@ -31,12 +32,18 @@ const MyProfile = () => {
     
     const handleSignOut = async () => {
         try {
-            mutate('/api/users/authorized-user', false); // Optionally mutate the SWR cache    
-            await signOut({ redirect: false });
-            router.push('/'); // Redirect to home page after sign out
-            redirect('/');
-           
+            // 1. Immediately clear SWR cache
+            mutate('/api/users/authorized-user', null, { revalidate: false });
             
+            // 2. Trigger sign out (clears session cookie)
+            await signOut({ redirect: false });
+            
+            // 3. Short delay to allow UI updates
+            await new Promise(resolve => setTimeout(resolve, 100)); // 100ms delay
+            
+            // 4. Redirect and force refresh
+            router.push('/');
+            router.refresh(); // Ensures server components update
         } catch (error) {
             console.error("Error signing out:", error);
         }
