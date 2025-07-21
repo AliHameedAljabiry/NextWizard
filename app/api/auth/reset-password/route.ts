@@ -1,4 +1,4 @@
-import { eq, and, isNotNull, lte } from 'drizzle-orm';
+import { eq, and, isNotNull, lte, gt } from 'drizzle-orm';
 import bcrypt from 'bcryptjs';
 import { db } from '@/database/drizzle';
 import { users } from '@/database/schema';
@@ -21,11 +21,13 @@ export async function POST(req: Request) {
         and(
           eq(users.passwordResetToken, token),
           isNotNull(users.passwordResetExpires),
-          lte(users.passwordResetExpires, now)
+          gt(users.passwordResetExpires, now)
         )
       );
 
-    
+    if (!user) {
+      return Response.json({ message: 'Invalid or expired token' }, { status: 400 });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
