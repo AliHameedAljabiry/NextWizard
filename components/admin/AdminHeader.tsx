@@ -9,7 +9,7 @@ import { Input } from '../ui/input'
 const fetcher = (url: string) => fetch(url).then(res => res.json())
 
 const AdminHeader = () => {
-    const { data: currentUser } = useSWR('/api/users/authorized-user', fetcher, {
+    const { data: currentUser } = useSWR('/api/auth/authorized-user', fetcher, {
         refreshInterval: 3000,
         revalidateOnFocus: true,
         shouldRetryOnError: false,
