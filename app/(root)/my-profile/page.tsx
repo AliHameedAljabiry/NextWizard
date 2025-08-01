@@ -32,19 +32,9 @@ const MyProfile = () => {
     
     const handleSignOut = async () => {
         try {
-            // 1. Immediately clear SWR cache
             mutate('/api/auth/authorized-user', null, { revalidate: false });
-            
-            // 2. Trigger sign out (clears session cookie)
             await signOut({ redirect: false });
-            
-            // 3. Short delay to allow UI updates
-            await new Promise(resolve => setTimeout(resolve, 300)); // 600ms delay
-            
-            // 4. Redirect and force refresh
             router.push('/');
-             await new Promise(resolve => setTimeout(resolve, 600)); // 600ms delay
-            router.refresh(); // Ensures server components update
         } catch (error) {
             console.error("Error signing out:", error);
         }
