@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Sparkles } from 'lucide-react'; // Optional: for icon animation
+import { Link as LinkIcon, Sparkles } from 'lucide-react'; // Optional: for icon animation
 import Link from 'next/link';
 
 const MainContent = () => {
@@ -63,12 +63,13 @@ const MainContent = () => {
           ✨ Ready to build your first full-stack app? Start your journey with NextWizard!
         </p>
 
-        
+      
         <Link 
           href="/docs/installation/automatic-installation" 
-          className='flex animate-pulse items-center justify-center mt-3 w-fit m-auto font-medium text-lg first-btn  dark:text-black text-white p-3 rounded-lg'>
-            Take Your First Step
+          className='flex group animate-pulse items-center justify-center mt-3 w-fit m-auto font-medium text-lg first-btn  dark:text-black text-white p-3 rounded-lg'>
+            Take Your First Step <LinkIcon className='w-5 ml-1 hidden group-hover:block '/>
         </Link>
+        
       </div>
       
     </div>

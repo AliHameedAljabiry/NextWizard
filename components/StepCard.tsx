@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Copy, Check } from 'lucide-react';
+import { Copy, Check, Link } from 'lucide-react';
 import { highlightCode } from '@/lib/highlight'; // your function
 import { useTheme } from './ThemeProvider';
 
@@ -87,15 +87,16 @@ export default function StepCard({ step }: { step: any }) {
         className=""
       >
         {step.resources && (
-          <div className='mt-5'>
+          <div className='mt-5 flex gap-1 group'> {/* Add 'group' here */}
             <a
               href={step.resources}
               target='_blank'
               rel='noopener noreferrer'
-              className='underline text-blue-100 underline-offset-4'
+              className='text-[18px]'
             >
               {`Read More About ${step.title}`}
             </a>
+            <Link className='w-5 hidden group-hover:block' /> {/* Use group-hover */}
           </div>
         )}
       </MotionDiv>

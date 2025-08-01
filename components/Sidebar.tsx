@@ -17,7 +17,7 @@ export default function Sidebar({ data }) {
   return (
     <div>
       {data.map((cat: any) => (
-        <div key={cat.id} className="mb-4 w-72">
+        <div key={cat.id} className="mb-4 w-fit">
           <button
             onClick={() => toggleCategory(cat.id)}
             className="w-full text-left font-semibold dark:text-white"
@@ -26,14 +26,14 @@ export default function Sidebar({ data }) {
           </button>
 
           {openCats.includes(cat.id) && (
-            <ul className="ml-4 mt-2 space-y-1 w-full">
+            <ul className="ml-4 mt-2 space-y-1 ">
               {cat.parts.map((part: any) => (
                 <li key={part.id}>
                   <Link
                     href={`/docs/${cat.slug}/${part.slug}`}
                     className={cn(
-                      'pl-2 py-1 pr-16 w-fit rounded-md text-sm text-gray-700 dark:text-gray-300',
-                      pathname === `/docs/${cat.slug}/${part.slug}` && 'dark:bg-gray-600'
+                      'pl-2 py-1 pr-4 w-fit rounded-md text-sm text-gray-700 dark:text-gray-200',
+                      pathname === `/docs/${cat.slug}/${part.slug}` && 'dark:bg-gray-700'
                     )}
                   >
                     {part.name}
