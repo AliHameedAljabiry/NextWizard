@@ -1,0 +1,10 @@
+
+<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+  <g fill="white" font-family="Arial, sans-serif" font-size="40">
+    <text x="100" y="65">NextWizard</text>
+  </g>
+  <g transform="translate(20,20)">
+    <rect x="0" y="0" width="60" height="60" rx="10" ry="10" fill="none" stroke="white" stroke-width="4"/>
+    <text x="12" y="42" font-size="30" fill="white">&gt;_</text>
+  </g>
+</svg>
