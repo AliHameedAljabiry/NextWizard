@@ -77,7 +77,7 @@ const AuthForm = <T extends FieldValues> ({type, schema, defaultValues, onSubmit
     const signInWithGitHub = async () => {
         try {
             await signIn("github");
-            router.push('/main-content');
+            router.push('/docs');
         } catch (error) {
             console.error("GitHub Sign-In Error:", error);
             toast({
