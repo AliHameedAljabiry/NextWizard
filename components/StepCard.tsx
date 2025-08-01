@@ -50,7 +50,7 @@ export default function StepCard({ step }: { step: any }) {
         transition={{ delay: 0.6, duration: 1 }}
         className=""
       >
-        <p className='text-gray text-[16px] dark:text-gray-300 mt-2'>{step.description}</p>
+        <p className='text-gray text-[17px] dark:text-gray-200  mt-2'>{step.description}</p>
       </MotionDiv>
 
       <MotionDiv
@@ -94,7 +94,7 @@ export default function StepCard({ step }: { step: any }) {
               rel='noopener noreferrer'
               className='underline text-blue-100 underline-offset-4'
             >
-              Read More
+              {`Read More About ${step.title}`}
             </a>
           </div>
         )}
