@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react'
 import DeleteStep from '@/components/admin/DeleteStep';
-import { FileText, PenLineIcon } from 'lucide-react';
+import { FilePen, FileText, PenLineIcon } from 'lucide-react';
 import DeleteCategory from '@/components/admin/DeleteCategory';
 import DeletePart from '@/components/admin/DeletePart';
 
@@ -88,7 +88,7 @@ const page = () => {
                          </div>
                           <div className='flex flex-row items-center  justify-center gap-3'>
                             <Link title='Step Details' href={`content/stepDetails/${step.id}`}><FileText className='w-5 '/></Link>
-                            <Link title="Update Step" href={`content/update/${step.id}`}><PenLineIcon className='text-primary-admin size-5'/></Link>
+                            <Link title="Update Step" href={`content/update/${step.id}`}><FilePen className='text-gray-300 size-5'/></Link>
                             <DeleteStep stepId={step.id} onDelete={mutate} title={step.title}/>
                           </div>
                         </li>
