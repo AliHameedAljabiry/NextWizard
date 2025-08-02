@@ -32,7 +32,7 @@ export default function Sidebar({ data }) {
                   <Link
                     href={`/docs/${cat.slug}/${part.slug}`}
                     className={cn(
-                      'pl-2 py-1 pr-4 w-fit rounded-md text-sm text-gray-700 dark:text-gray-200',
+                      'pl-2 py-1 pr-5 w-fit rounded-md text-sm text-gray-700 dark:text-gray-200',
                       pathname === `/docs/${cat.slug}/${part.slug}` && 'dark:bg-gray-700'
                     )}
                   >
