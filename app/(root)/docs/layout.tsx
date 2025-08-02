@@ -8,7 +8,7 @@ const MainContentLayout = async ({children}: {children: ReactNode}) => {
   const session = await auth()
 
   if (!session?.user?.id) redirect("/sign-in")
-    console.log(session)
+    
 
   const categoriesWithParts = await fetchSidebarData();
   return (

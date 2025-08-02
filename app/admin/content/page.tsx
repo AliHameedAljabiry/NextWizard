@@ -7,6 +7,8 @@ import Link from 'next/link';
 import React, { useState } from 'react'
 import DeleteStep from '@/components/admin/DeleteStep';
 import { FileText, PenLineIcon } from 'lucide-react';
+import DeleteCategory from '@/components/admin/DeleteCategory';
+import DeletePart from '@/components/admin/DeletePart';
 
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
@@ -20,7 +22,7 @@ const page = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
 
-  console.log("allCategories", allCategories)
+  
   
   return (
    <section className='w-full rounded-2xl bg-white p-7 all-users'>
@@ -65,11 +67,17 @@ const page = () => {
          <div className='flex flex-col gap-5 mt-8'>
             {(selectedCategory ? allCategories.filter((cat: any) => cat.id === selectedCategory) : allCategories).map((cat: any) => (
               <div key={cat.id} className='bg-light-300 dark:bg-black p-5 rounded-lg shadow'>
-                <h3 className='text-xl font-semibold text-gray-800 dark:text-gray-300 mb-3'>{cat.name}</h3>
+                <div className='flex flex-row gap-5 w-full justify-between'>
+                  <h3 className='text-xl font-semibold text-gray-800 dark:text-gray-300 mb-3'>{cat.name}</h3>
+                  <DeleteCategory catId={cat.id} catName={cat.name}/>
+                </div>
                 
                 {cat.parts.map((part: any) => (
                   <div key={part.id} className='mb-5 ml-5'>
-                    <h4 className='text-lg font-medium text-primary-admin mb-2'>{part.name}</h4>
+                    <div className='flex flex-row gap-5'>
+                      <h4 className='text-lg font-medium text-primary-admin mb-2'>{part.name}</h4>
+                      <DeletePart partId={part.id} partName={part.name}/>
+                    </div>
                     
                     <ul className='list-disc pl-6'>
                       {part.steps.map((step: any) => (

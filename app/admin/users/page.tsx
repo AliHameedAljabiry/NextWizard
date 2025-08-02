@@ -28,7 +28,6 @@ const AllUsers = () => {
     refreshInterval: 3000, 
   })
  
-  console.log(allUsers)
   // Sort users by name
   const [sortAsc, setSortAsc] = useState(true);
   const sortedUsers = allUsers ? [...allUsers].sort((a, b) => {

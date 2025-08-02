@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
+
 export default function Sidebar({ data }) {
   const [openCats, setOpenCats] = useState<string[]>([]); // Now an array of open category IDs
   const pathname = usePathname();
@@ -18,12 +19,18 @@ export default function Sidebar({ data }) {
     <div>
       {data.map((cat: any) => (
         <div key={cat.id} className="mb-4 w-fit">
-          <button
+          
+        <button
             onClick={() => toggleCategory(cat.id)}
-            className="w-full text-left font-semibold dark:text-white"
+            className={cn(
+              "w-full text-left font-semibold text-gray-700 dark:text-gray-400 hover:dark:text-white",
+              pathname.startsWith(`/docs/${cat.slug}`) && "dark:text-white text-black"
+            )}
           >
             {cat.name}
           </button>
+            
+          
 
           {openCats.includes(cat.id) && (
             <ul className="ml-4 mt-2 space-y-1 ">
@@ -32,8 +39,8 @@ export default function Sidebar({ data }) {
                   <Link
                     href={`/docs/${cat.slug}/${part.slug}`}
                     className={cn(
-                      'pl-2 py-1 pr-5 w-fit rounded-md text-sm text-gray-700 dark:text-gray-200',
-                      pathname === `/docs/${cat.slug}/${part.slug}` && 'dark:bg-gray-700'
+                      'pl-2 py-1 pr-5 w-fit font-medium rounded-md text-sm text-gray-700 dark:text-gray-400 hover:dark:text-white',
+                      pathname === `/docs/${cat.slug}/${part.slug}` && 'dark:text-white text-black'
                     )}
                   >
                     {part.name}

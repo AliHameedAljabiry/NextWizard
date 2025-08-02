@@ -83,10 +83,10 @@ interface Props extends Partial<Step> {
       if (result.success) {
         toast({
           title: "Success",
-          description: "Book created successfully",
+          description: "Step created successfully",
         });
   
-        router.push(`/docs`);
+        router.push(`/admin/content`);
       } else {
         toast({
           title: "Error",
@@ -104,7 +104,7 @@ interface Props extends Partial<Step> {
           description: "Step updated successfully",
         });
 
-        router.push(`/docs`);
+        router.push(`/admin/content`);
       } else {
         toast({
           title: "Error",
