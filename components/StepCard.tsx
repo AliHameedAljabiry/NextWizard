@@ -7,6 +7,7 @@ import { highlightCode } from '@/lib/highlight'; // your function
 import { useTheme } from './ThemeProvider';
 
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 const MotionDiv = dynamic(() =>
   import('framer-motion').then((mod) => mod.motion.div),
   { ssr: false }
@@ -30,6 +31,18 @@ export default function StepCard({ step }: { step: any }) {
       highlightCode(step.code, step.lang || 'ts', mode).then(setHighlightedCode);
     }
   }, [step.code, step.lang, mode]); // re-run if theme changes
+  
+  const getFileIcon = (iconType: string) => {
+    switch (iconType) {
+      case 'tsx': return <Image src="/icons/tsx.svg" alt='tsx' className="" width={20} height={10}/>;
+      case 'ts': return <span className="text-[#2b8cb3] font-bold">TS</span>;
+      case 'js': return <span className="text-[#b3b12b] font-bold">JS</span>;
+      case 'css': return <span className="text-[#2b8cb3] font-bold">#</span>;
+      case 'json': return <span className="text-[#b3b12b] font-bold">{'{}'}</span>;
+      case 'env': return <span className="text-green-600 font-bold">$</span>;
+      default: return <span className="text-gray-400">📄</span>;
+    }
+  }
 
   return (
     <div className='p-4 rounded-lg dark:text-white'>
@@ -62,7 +75,10 @@ export default function StepCard({ step }: { step: any }) {
         {highlightedCode && (
           <div className='flex flex-col border dark:border-gray-700 bg-[#ffffff] dark:bg-[#222222] mt-2 rounded overflow-auto'>
             <div className='py-3 px-4 flex flex-row items-center justify-between border-b dark:border-gray-700'>
-              <p className='dark:text-gray-300'>{step.filePath}</p>
+              <div className='flex flex-row items-center gap-2'>
+                {getFileIcon(step.icon)}
+                <p className='dark:text-gray-300'>{step.filePath}</p>
+              </div>
               <Button
                 title={copied ? 'Copied' : 'Copy'}
                 onClick={handleCopy}

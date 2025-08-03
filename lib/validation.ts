@@ -40,6 +40,7 @@ export const contentUploadSchema = z.object({
   title: z.string().min(2, "Step title is required"),
   description: z.string().min(10, "Step description is too short"),
   code: z.string().optional(),
+  icon: z.enum(['tsx', 'ts', 'js', 'css', 'env', 'json', 'other']).optional(),
   filePath: z.string().optional(),
   order: z.coerce.number().int().positive().lte(1000),
   resources: z.string().optional(), // If it's a stringified JSON, validate format manually

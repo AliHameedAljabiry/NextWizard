@@ -62,6 +62,7 @@ export const steps = pgTable('steps', {
   partId: uuid('part_id').references(() => parts.id).notNull(),
   title: varchar('title', { length: 255 }).notNull(),
   description: text('description').notNull(),
+  icon: varchar('icon', { length: 20 }),
   filePath: text('file-path'),
   code: text('code'), // code block for the step
   resources: text('resources'), // optional: JSON string of resource links

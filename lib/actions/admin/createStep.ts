@@ -52,6 +52,7 @@ export const createStep = async (form: StepFormValues) => {
       title: form.title,
       description: form.description,
       filePath: form.filePath,
+      icon: form.icon || '',
       order: form.order,
       code: form.code || '',
       resources: form.resources || '',

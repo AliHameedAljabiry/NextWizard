@@ -42,6 +42,7 @@ interface Props extends Partial<Step> {
       slug: "",
       title:  "",
       description: "",
+      icon: 'tsx'|| 'ts'|| 'js'|| 'css'|| 'env'|| 'json'|| 'other',
       filePath: "",
       order: 0,
       code:  "",
@@ -63,6 +64,7 @@ interface Props extends Partial<Step> {
             slug: part.slug,
             title: step.title,
             description: step.description,
+            icon: step.icon,
             filePath: step.filePath || "",
             order: step.order,
             code: step.code || "",
@@ -196,6 +198,29 @@ interface Props extends Partial<Step> {
             <FormMessage/>
           </FormItem>
         )}
+        />
+
+        <FormField
+          control={form.control}
+          name={"icon"}
+          render={({ field }) => (
+            <FormItem className='flex flex-col gap-1'>
+              <FormLabel className='text-base font-normal text-dark-500 dark:text-white'>File Icon</FormLabel>
+              <FormControl>
+                <select {...field} className="min-h-14 step-input dark:bg-[#1f1f1f]">
+                  <option value="">Select icon</option>
+                  <option value="tsx">React (tsx)</option>
+                  <option value="ts">TypeScript</option>
+                  <option value="js">JavaScript</option>
+                  <option value="css">CSS</option>
+                  <option value="json">JSON</option>
+                  <option value="env">.env.local</option>
+                  <option value="other">Other</option>
+                </select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
 
         <FormField control={form.control} name={"filePath"} render={({ field }) => (

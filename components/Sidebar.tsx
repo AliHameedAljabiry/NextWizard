@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { File, FileCheck2, FolderClosed, FolderDown } from 'lucide-react';
+import { ChevronDown, ChevronRight, File, FileCheck2, FolderClosed, FolderDown } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -29,7 +29,7 @@ export default function Sidebar({ data }) {
               pathname.startsWith(`/docs/${cat.slug}`) && "dark:text-white text-black"
             )}
             >
-            {openCats.includes(cat.id) ?<FolderDown className='w-5'/> : <FolderClosed className='w-5'/>}
+            {openCats.includes(cat.id) ?<ChevronDown className='w-5'/> : <ChevronRight className='w-5'/>}
             {cat.name}
           </button>
             
@@ -46,7 +46,7 @@ export default function Sidebar({ data }) {
                       pathname === `/docs/${cat.slug}/${part.slug}` && 'dark:text-white text-black'
                     )}
                   >
-                    {pathname === `/docs/${cat.slug}/${part.slug}` ? <FileCheck2 className='w-5'/> : <File className='w-5'/>}
+                    {pathname === `/docs/${cat.slug}/${part.slug}` ? <FileCheck2 className='w-4 -mt-0.5'/> : <File className='w-4 -mt-0.5'/>}
                     {part.name}
                   </Link>
                 </li>
