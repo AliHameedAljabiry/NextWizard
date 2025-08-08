@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Sidebar from './Sidebar';
-import { Menu, X } from 'lucide-react';
+import { Menu, PanelLeft, X } from 'lucide-react';
 
 export default function MobileSidebarToggle({ data }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,10 +12,10 @@ export default function MobileSidebarToggle({ data }) {
       {/* Toggle button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed z-30 top-5  left-4  p-2 bg-gray-100 dark:bg-gray-500 dark:hover:bg-gray-300 rounded-md shadow-md"
+        className="fixed z-30 top-5  left-3  p-2 bg-inherit dark:bg-inherit "
         aria-label="Toggle sidebar"
       >
-        {isOpen ? <X size={20}  /> : <Menu size={20} />}
+        {isOpen ? <X size={20}  /> : <PanelLeft size={40} className='p-2 -mt-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-800 hover:dark:bg-gray-700 hover:bg-gray-400 '/>}
       </button>
 
       {/* Mobile sidebar */}

@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <div className="flex w-full items-center justify-between p-4 text-black dark:text-light-600 bg-[#FFFFFF] dark:bg-[#050505] shadow-md border-b dark:border-gray-800">
       <div className='flex flex-row items-center justify-between gap-20'>
-        <Link href="/" className="text-2xl flex flex-row items-center ml-8 md:ml-0">
+        <Link href="/" className="text-2xl flex flex-row items-center ml-12 md:ml-0">
           <Image
             src="icons/nextjs-icon.svg"
             alt="logo"
@@ -37,12 +37,12 @@ const Header = () => {
             height={50}
           />
           <h1 className="font-michroma -ml-3 z-20 hidden md:block">extWizard</h1>
-          <h1 className="font-michroma -ml-3 z-20 md:hidden">W</h1>
+          <h1 className="font-michroma font-bold -ml-3 -mt-1 z-20 md:hidden">W</h1>
         </Link>
 
         {/* Desktop Navigation - Hidden on medium and smaller screens */}
         {currentUser?.id && (
-          <div className='hidden md:flex flex-row gap-4'>
+          <div className='hidden md:flex flex-row gap-5 mr-5'>
             <Link href="/" className={cn(
               'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary',
               pathname === '/' && 'text-blue-100 dark:text-primary underline underline-offset-8')}>
@@ -50,7 +50,7 @@ const Header = () => {
             </Link>
 
             <Link href="/docs" className={cn(
-              'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary',
+              'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary whitespace-nowrap',
               pathname === '/docs' && 'text-blue-100 dark:text-primary underline underline-offset-8')}>
               Create Project
             </Link>

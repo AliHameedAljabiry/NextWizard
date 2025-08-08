@@ -27,9 +27,9 @@ function Footer() {
     return (
        <footer className=" bg-[#FFFFFF] dark:bg-[#080808] text-black dark:text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className=" grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 ml-10 gap-8  mb-8 ">
             <div>
-                <Link href="/" className="text-2xl flex flex-row items-center relative">
+                <Link href="/" className="text-xl lg:text-2xl flex flex-row items-center relative -ml-5">
                   <Image
                         src="icons/nextjs-icon.svg"
                         alt="logo"
@@ -80,8 +80,8 @@ function Footer() {
             </div>
           </div>
 
-          <div className="border-t border-slate-800 pt-8 flex flex-row gap-5 justify-between items-center">
-            <div className=" flex flex-col gap-5 justify-between items-center">
+          <div className="border-t border-slate-800 pt-8 flex flex-row gap-5 justify-between items-center flex-wrap">
+            <div className=" flex flex-col gap-5 justify-between items-center ">
                 <p className="dark:text-slate-400 text-sm">
                 © 2024 NextWizard. All rights reserved.
                 </p>
