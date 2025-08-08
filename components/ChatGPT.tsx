@@ -41,7 +41,7 @@ export default function ChatGPTWindow() {
   };
 
   return (
-    <div className=" max-h-[86vh] min-h-[86vh] flex flex-col border rounded-lg dark:border-gray-700 bg-white dark:bg-[#0d1117]">
+    <div className="min-w-[500px] max-h-[86vh] min-h-[86vh] flex flex-col border rounded-lg dark:border-gray-700 bg-white dark:bg-[#0d1117]">
       <div className="p-3 border-b dark:border-gray-700 font-semibold text-center dark:text-white">Ask ChatGPT</div>
       <div className="flex-1 overflow-y-auto p-3 space-y-2 text-sm">
         {messages.map((m, i) => (

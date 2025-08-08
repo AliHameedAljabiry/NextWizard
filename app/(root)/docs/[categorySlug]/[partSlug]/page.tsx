@@ -1,5 +1,6 @@
 import { fetchStepsByPartSlug } from '@/app/api/content/steps/route';
 import ChatGPTWindow from '@/components/ChatGPT';
+import ChatGPTToggle from '@/components/ChatGPTToggle';
 import StepCard from '@/components/StepCard';
 import { highlightCode } from '@/lib/highlight';
 
@@ -17,8 +18,8 @@ export default async function Page({ params }: { params: { partSlug: string } })
   );
 
   return (
-    <div className='pt-3 grid grid-cols-1  xl:grid-cols-2   gap-4 '>
-      <div className='step-card   max-h-[88vh] overflow-auto hide-scrollbar '>
+    <div className='pt-3 flex   gap-4 '>
+      <div className='step-card w-full  max-h-[88vh] overflow-auto hide-scrollbar '>
         <h1 className='text-xl font-bold dark:text-white  '>{data.part.name}</h1>
         <div className='mt-6 space-y-4 '>
           {stepsWithHtml.map(step => (
@@ -27,9 +28,10 @@ export default async function Page({ params }: { params: { partSlug: string } })
           ))}
         </div>
       </div>
-     <div className=''>
-        <ChatGPTWindow/>
-      </div>
+     
+      <ChatGPTToggle />
+     
+
    
  
       
