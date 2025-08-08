@@ -17,7 +17,7 @@ export default function Sidebar({ data }) {
   };
 
   return (
-    <div>
+    <div className='pt-6'>
       {data.map((cat: any) => (
         <div key={cat.id} className="mb-4 w-fit">
          

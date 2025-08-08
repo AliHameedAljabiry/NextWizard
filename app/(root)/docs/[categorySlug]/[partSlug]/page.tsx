@@ -17,8 +17,8 @@ export default async function Page({ params }: { params: { partSlug: string } })
   );
 
   return (
-    <div className='pt-3 flex flex-row '>
-      <div className='w-2/3  max-h-[88vh] overflow-auto  '>
+    <div className='pt-3 grid grid-cols-1  xl:grid-cols-2   gap-4 '>
+      <div className='step-card   max-h-[88vh] overflow-auto hide-scrollbar '>
         <h1 className='text-xl font-bold dark:text-white  '>{data.part.name}</h1>
         <div className='mt-6 space-y-4 '>
           {stepsWithHtml.map(step => (
@@ -27,8 +27,12 @@ export default async function Page({ params }: { params: { partSlug: string } })
           ))}
         </div>
       </div>
-
-      <ChatGPTWindow/>
+     <div className=''>
+        <ChatGPTWindow/>
+      </div>
+   
+ 
+      
     </div>
   );
 }

@@ -101,9 +101,10 @@ const page = () => {
           </div>
 
         </div>}
+        
 
    </section>
   )
 }
 
-export default page
+export default page 
