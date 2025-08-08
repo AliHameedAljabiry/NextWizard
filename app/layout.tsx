@@ -29,8 +29,38 @@ const michroma = Michroma({
 });
 
 export const metadata: Metadata = {
-  title: 'NextWizard',
-  description: 'Your Next.js giude to build fullstack modern web applications',
+  title: 'NextWizard - Build Modern Fullstack Web Applications',
+  description: 'Your Next.js guide to build fullstack modern web applications with step-by-step tutorials and best practices',
+  keywords: ['Next.js', 'React', 'Web Development', 'Fullstack', 'JavaScript', 'TypeScript', 'Tutorial'],
+  authors: [{ name: 'Ali Hameed' }],
+  creator: 'Ali Dev',
+  publisher: 'Ali Hameed',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://next-wizard.vercel.app',
+    title: 'NextWizard - Build Modern Fullstack Web Applications',
+    description: 'Your Next.js guide to build fullstack modern web applications with step-by-step tutorials and best practices',
+    siteName: 'NextWizard',
+    images: [
+      {
+        url: 'https://www.drupal.org/files/project-images/nextjs-icon-dark-background.png',
+        width: 1200,
+        height: 630,
+        alt: 'NextWizard - Your Next.js Guide',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NextWizard - Build Modern Fullstack Web Applications',
+    description: 'Your Next.js guide to build fullstack modern web applications',
+    images: ['https://your-nextjs-app-url.com/twitter-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 
