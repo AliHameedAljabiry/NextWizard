@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: { partSlug: string } })
   );
 
   return (
-    <div className='pt-3 flex   gap-4 '>
+    <div className='pt-3 flex flex-col 2xl:flex-row  gap-4 '>
       <div className='step-card w-full  max-h-[88vh] overflow-auto hide-scrollbar '>
         <h1 className='text-xl font-bold dark:text-white  '>{data.part.name}</h1>
         <div className='mt-6 space-y-4 '>
