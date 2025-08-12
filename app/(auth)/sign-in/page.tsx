@@ -25,7 +25,7 @@ const SignIn = () => {
           schema={signInSchema}
           defaultValues={{ email: '', password: '' }}
           onSubmit={signInWithCredentials}
-        />
+        /> 
       </MotionDiv>
     </>
   )

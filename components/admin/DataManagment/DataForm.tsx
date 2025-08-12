@@ -238,7 +238,7 @@ interface Props extends Partial<Step> {
           <FormItem className='flex flex-col gap-1'>
             <FormLabel className='text-base font-normal text-dark-500 dark:text-white'>Step Sequence</FormLabel>
             <FormControl>
-              <Input required type="number" min={1} max={10000} placeholder="Step Sequence" {...field} className="step-input min-h-14" />
+              <Input required type="number" min={1} max={10000} placeholder="Step Sequence" {...field} className="step-input min-h-14" onWheel={e => (e.target as HTMLInputElement).blur()}/>
             </FormControl>
             <FormMessage/>
           </FormItem>
