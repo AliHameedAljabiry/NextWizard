@@ -30,10 +30,6 @@ export default async function Page({ params }: { params: { partSlug: string } })
       </div>
      
       <ChatGPTToggle />
-     
-
-   
- 
       
     </div>
   );

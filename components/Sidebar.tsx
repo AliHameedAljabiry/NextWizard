@@ -16,25 +16,25 @@ export default function Sidebar({ data }) {
     );
   };
 
-  return (
-    <div className='pt-6'>
+  return ( 
+    <div
+      className="pt-6 max-h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-700 dark:scrollbar-track-gray-900"
+      style={{
+        scrollbarWidth: 'thin',
+      }}
+    >
       {data.map((cat: any) => (
         <div key={cat.id} className="mb-4 w-fit">
-         
-          
-        <button
+          <button
             onClick={() => toggleCategory(cat.id)}
             className={cn(
-              "w-full flex flex-row gap-1 text-left font-semibold text-gray-700 dark:text-gray-400 hover:dark:text-white",
+              "w-full flex flex-row gap-1 text-left font-semibold text-gray-700 dark:text-gray-400 hover:text-black hover:dark:text-white",
               pathname.startsWith(`/docs/${cat.slug}`) && "dark:text-white text-black"
             )}
-            >
-            {openCats.includes(cat.id) ?<ChevronDown className='w-5'/> : <ChevronRight className='w-5'/>}
+          >
+            {openCats.includes(cat.id) ? <ChevronDown className='w-5' /> : <ChevronRight className='w-5' />}
             {cat.name}
           </button>
-            
-          
-
           {openCats.includes(cat.id) && (
             <ul className="ml-4 ">
               {cat.parts.map((part: any) => (
@@ -42,11 +42,11 @@ export default function Sidebar({ data }) {
                   <Link
                     href={`/docs/${cat.slug}/${part.slug}`}
                     className={cn(
-                      'pl-2 py-1 pr-5 w-fit  flex flex-row gap-1 font-medium rounded-md text-sm text-gray-700 dark:text-gray-400 hover:dark:text-white',
+                      'pl-2 py-1 pr-5 w-fit  flex flex-row gap-1 font-medium rounded-md text-sm text-gray-600 dark:text-gray-400 hover:text-black hover:dark:text-white',
                       pathname === `/docs/${cat.slug}/${part.slug}` && 'dark:text-white text-black'
                     )}
                   >
-                    {pathname === `/docs/${cat.slug}/${part.slug}` ? <FileCheck2 className='w-4 -mt-0.5'/> : <File className='w-4 -mt-0.5'/>}
+                    {pathname === `/docs/${cat.slug}/${part.slug}` ? <FileCheck2 className='w-4 -mt-0.5 min-w-4' /> : <File className='w-4 -mt-0.5 min-w-4' />}
                     {part.name}
                   </Link>
                 </li>
