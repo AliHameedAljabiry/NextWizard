@@ -42,7 +42,7 @@ interface Props extends Partial<Step> {
       slug: "",
       title:  "",
       description: "",
-      icon: 'tsx'|| 'ts'|| 'js'|| 'css'|| 'env'|| 'json'|| 'other',
+      icon: 'tsx',
       filePath: "",
       order: 0,
       code:  "",

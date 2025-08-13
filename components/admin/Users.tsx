@@ -106,13 +106,13 @@ const Users = ({initialData}: {initialData: any}) => {
                     })}
                   </td>
 
-                  <td className={cn("px-4 py-2 text-center  text-sm" )}>
+                  <td className={cn("px-4 py-2 text-center  text-sm flex justify-center" )}>
                     <div className={cn("w-fit rounded-md", user.role === 'ADMIN' 
                           ? 'text-[#027A48] bg-[#ECFDF3]' 
                           : 'text-[#C11574] bg-[#FDF2FA]')}>
                       <select
                         title='Select Role'
-                        className={cn("bg-transparent rounded px-2 py-1 text-sm flex items-center justify-center")}
+                        className={cn("bg-transparent rounded px-2 py-1 text-sm ")}
                         value={user.role}
                         onChange={async (e) => {
                           const newRole = e.target.value;
