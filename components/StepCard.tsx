@@ -63,7 +63,9 @@ export default function StepCard({ step }: { step: any }) {
         transition={{ delay: 0.6, duration: 1 }}
         className=""
       >
-        <p className='text-gray text-[17px] dark:text-gray-200  mt-2'>{step.description}</p>
+        <pre className="whitespace-pre-wrap text-gray text-[17px] dark:text-gray-200 mt-2">
+          {step.description}
+        </pre>
       </MotionDiv>
 
       <MotionDiv
