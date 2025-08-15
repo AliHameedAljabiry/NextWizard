@@ -38,10 +38,19 @@ export const createStep = async (form: StepFormValues) => {
 
     // 4. Insert part if not exists
     if (!partId) {
+      // Find the highest order for parts in this category
+      const lastPart = await db.query.parts.findFirst({
+        where: (p, { eq }) => eq(p.categoryId, categoryId),
+        orderBy: (p, { desc }) => desc(p.order),
+      });
+
+      const nextOrder = lastPart?.order ? lastPart.order + 1 : 1;
+
       const newPart = await db.insert(parts).values({
         name: form.part,
         slug: form.slug,
         categoryId,
+        order: nextOrder, // <-- auto-increment order
       }).returning();
       partId = newPart[0].id;
     }
