@@ -25,7 +25,7 @@ const StatsCard = ({ title, value, className }: { title: string, value: number, 
 
 // Recent Users Preview Component
 const RecentUsersPreview = ({ users }: { users: any[] }) => (
-  <div className="space-y-4">
+  <div className="space-y-4 max-h-[470px] overflow-y-auto hide-scrollbar">
     <div className="grid grid-cols-1 gap-4">
       {users.map((user) => (
         <div key={user.id} className="flex items-center space-x-3 relative">
@@ -48,7 +48,7 @@ const RecentUsersPreview = ({ users }: { users: any[] }) => (
 
 // Recent Projects Preview Component
 const RecentProjectsPreview = ({ projects }: { projects: any[] }) => (
-  <div className="space-y-4">
+  <div className="space-y-4 max-h-[470px] overflow-y-auto hide-scrollbar">
     <div className="space-y-2">
       {projects.map((project) => (
         <div key={project.id} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg relative">
