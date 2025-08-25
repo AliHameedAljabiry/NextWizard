@@ -188,7 +188,7 @@ export default function AdminHomePage() {
             <div className='flex flex-row items-center justify-between w-full'>
               <CardTitle>Steps</CardTitle>
               <Button  className="mt-2 bg-[#0f0f0f] hover:bg-[#0f0f0f] dark:bg-white  text-white" asChild>
-                <Link className='text-white dark:text-black font-semibold' href="/admin/users">View All</Link>
+                <Link className='text-white dark:text-black font-semibold' href="/admin/docs">View All</Link>
               </Button>
             </div>
           </CardHeader>
