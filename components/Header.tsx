@@ -52,7 +52,13 @@ const Header = () => {
             <Link href="/docs" className={cn(
               'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary whitespace-nowrap',
               pathname === '/docs' && 'text-blue-100 dark:text-primary underline underline-offset-8')}>
-              Create Project
+              Docs
+            </Link>
+            
+            <Link href="/projects" className={cn(
+              'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary whitespace-nowrap',
+              pathname === '/projects' && 'text-blue-100 dark:text-primary underline underline-offset-8')}>
+              Projects
             </Link>
             
             <Link href="/about" className={cn(
@@ -71,7 +77,7 @@ const Header = () => {
             {currentUser?.role === 'ADMIN' && (
               <Link href='/admin' 
                 className={'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary'}>
-                  Admin
+                  Dashboard
               </Link>  
             )}
           </div>
@@ -148,7 +154,16 @@ const Header = () => {
               )}
               onClick={() => setIsMenuOpen(false)}
             >
-              Create Project
+              Docs
+            </Link>
+            <Link href="/projects" 
+              className={cn(
+                'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary',
+                pathname === '/projects' && 'text-blue-100 dark:text-primary underline underline-offset-8'
+              )}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Projects
             </Link>
             
             <Link href="/about" 

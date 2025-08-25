@@ -1,4 +1,4 @@
-import { fetchStepsByPartSlug } from '@/app/api/content/steps/route';
+import { fetchStepsByPartSlug } from '@/app/api/docs/steps/route';
 import ChatGPTWindow from '@/components/ChatGPT';
 import ChatGPTToggle from '@/components/ChatGPTToggle';
 import StepCard from '@/components/StepCard';

@@ -1,3 +1,4 @@
+import { boolean } from 'drizzle-orm/pg-core';
 import {
     date, 
     uuid, 
@@ -8,6 +9,7 @@ import {
     timestamp, 
     pgEnum 
 } from 'drizzle-orm/pg-core';
+import { title } from 'process';
 
 export const STATUS_ENUM = pgEnum('status', [ 
     'PENDING', 
@@ -17,6 +19,11 @@ export const STATUS_ENUM = pgEnum('status', [
 export const ROLE_ENUM = pgEnum('role', [
     'USER', 
     'ADMIN'
+]);
+
+export const IS_FREE_ENUM = pgEnum('is_free', [
+    'FREE', 
+    'PAID'
 ]);
 
 export const users = pgTable('users', {
@@ -68,5 +75,20 @@ export const steps = pgTable('steps', {
   resources: text('resources'), // optional: JSON string of resource links
   order: integer('order').default(0).notNull(), // step order within part
   createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+});
+
+// Projects Table
+export const projects = pgTable('projects', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  title: varchar('title', { length: 255 }).notNull(), 
+  description: text('description'),
+  imageUrl: text('image_url'),
+  videoUrl: text('video_url'),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+  author: varchar('author', { length: 100 }).notNull(),
+  isFree: IS_FREE_ENUM("is_free").notNull().default("FREE"),
+  authorImageUrl: text("author_image_url"),
+  publishDate: timestamp('publish_date', { withTimezone: true }),
+  githubUrl: text('github_url'),
 });
 

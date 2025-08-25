@@ -88,7 +88,7 @@ interface Props extends Partial<Step> {
           description: "Step created successfully",
         });
   
-        router.push(`/admin/content`);
+        router.push(`/admin/docs`);
       } else {
         toast({
           title: "Error",
@@ -106,7 +106,7 @@ interface Props extends Partial<Step> {
           description: "Step updated successfully",
         });
 
-        router.push(`/admin/content`);
+        router.push(`/admin/docs`);
       } else {
         toast({
           title: "Error",

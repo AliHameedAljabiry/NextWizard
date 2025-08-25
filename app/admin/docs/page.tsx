@@ -1,7 +1,7 @@
 import { db } from "@/database/drizzle"
 import { categories, parts, steps } from "@/database/schema"
 import { eq } from "drizzle-orm"
-import Content from "@/components/admin/Content";
+import Content from "@/components/admin/Docs";
 
 const Page = async () => {
   // Fetch all categories

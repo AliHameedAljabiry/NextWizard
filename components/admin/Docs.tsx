@@ -32,13 +32,13 @@ const Content = ({ initialData }: { initialData: any}) => {
   return (
    <section className='w-full rounded-2xl bg-white p-7 all-users'>
       <div className='flex flex-wrap items-center justify-between gap-2'>
-            <h2 className='text-2xl font-semibold dark:text-white'>All Steps</h2>
-            <div className='flex flex-row gap-5'>
-              <Button className='bg-primary-admin' asChild>
-                  <Link className='text-light-800' href="/admin/content/new">+ Create a New  Step</Link> 
-              </Button>
-            </div>
-        </div>
+          <h2 className='text-2xl font-semibold dark:text-white'>All Steps</h2>
+          <div className='flex flex-row gap-5'>
+            <Button className='bg-primary-admin' asChild>
+                <Link className='text-light-800' href="/admin/docs/new">+ Create a New  Step</Link> 
+            </Button>
+          </div>
+      </div>
 
         {data && 
         <div className='flex flex-col gap-5'>
@@ -89,11 +89,11 @@ const Content = ({ initialData }: { initialData: any}) => {
                         <li key={step.id} className='text-gray-700 bg-[#c5c5c5] dark:bg-[#242424] dark:text-gray-300 px-3 py-2 mb-2 rounded-lg flex flex-row items-center justify-between'>
                           <div className='flex flex-row items-center gap-2'>
                             <h2>Step {step.order}: </h2>
-                            <Link href={`content/stepDetails/${step.id}`}>{step.title}</Link>
+                            <Link href={`docs/stepDetails/${step.id}`}>{step.title}</Link>
                          </div>
                           <div className='flex flex-row items-center  justify-center gap-3'>
-                            <Link title='Step Details' href={`content/stepDetails/${step.id}`}><FileText className='w-5 '/></Link>
-                            <Link title="Update Step" href={`content/update/${step.id}`}><FilePen className='text-gray-300 size-5'/></Link>
+                            <Link title='Step Details' href={`docs/stepDetails/${step.id}`}><FileText className='w-5 '/></Link>
+                            <Link title="Update Step" href={`docs/update/${step.id}`}><FilePen className='text-gray-300 size-5'/></Link>
                             <DeleteStep stepId={step.id} onDelete={mutate} title={step.title}/>
                           </div>
                         </li>

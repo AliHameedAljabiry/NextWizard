@@ -1,4 +1,4 @@
-import { fetchSidebarData } from '@/app/api/content/categories/route'
+import { fetchSidebarData } from '@/app/api/docs/categories/route'
 import { auth } from '@/auth'
 import MobileSidebarToggle from '@/components/MobileSidebarToggle'
 import Sidebar from '@/components/Sidebar'

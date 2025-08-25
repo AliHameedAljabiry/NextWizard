@@ -18,19 +18,25 @@ export const FIELD_TYPES = {
 
 export const adminSideBarLinks = [
   {
-    img: "/icons/admin/home.svg",
+    img: "/icons/admin/home.png",
     route: "/admin",
     text: "Home",
   },
   {
-    img: "/icons/admin/users.svg",
+    img: "/icons/admin/users.png",
     route: "/admin/users",
     text: "All Users",
   },
   {
-    img: "/icons/admin/book.svg",
-    route: "/admin/content",
-    text: "All Content",
+    img: "/icons/admin/docs.png",
+    route: "/admin/docs",
+    text: "All Docs",
+  },
+  
+  {
+    img: "/icons/admin/folder.svg",
+    route: "/admin/projects",
+    text: "All Projects",
   },
   
 ];

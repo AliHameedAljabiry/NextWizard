@@ -1,3 +1,4 @@
+import { auth } from '@/auth';
 import { z } from 'zod';
 
 export const signUpSchema = z.object({
@@ -44,6 +45,18 @@ export const contentUploadSchema = z.object({
   filePath: z.string().optional(),
   order: z.coerce.number().int().positive().lte(1000),
   resources: z.string().optional(), // If it's a stringified JSON, validate format manually
+});
+
+export const projectUploadSchema = z.object({
+  title: z.string().min(2, "Project title is required"),
+  description: z.string().min(10, "Project description is too short"),
+  imageUrl: z.string().url("Invalid image URL").optional(),
+  videoUrl: z.string().url("Invalid video URL").optional(),
+  author: z.string().min(2, "Author name is required"),
+  authorImageUrl: z.string().url("Invalid author image URL").optional(),
+  isFree: z.enum(['FREE', 'PAID']),
+  publishDate: z.coerce.date().optional().default(new Date()),
+  githubUrl: z.string().url("Invalid GitHub URL").optional(),
 });
 
 

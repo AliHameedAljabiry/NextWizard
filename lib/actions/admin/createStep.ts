@@ -60,7 +60,7 @@ export const createStep = async (form: StepFormValues) => {
       partId,
       title: form.title,
       description: form.description,
-      filePath: form.filePath,
+      filePath: form.filePath,   
       icon: form.icon || '',
       order: form.order,
       code: form.code || '',

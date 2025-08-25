@@ -10,6 +10,22 @@
    
   }
 
+  
+  /* Default (light mode) */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    width: 1.5em;
+    filter: invert(0.1);
+    /*gray-ish*/opacity: 0.8;
+    -webkit-filter: invert(0.1);
+}
+
+  /* Dark mode override */
+  .dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* makes it white */
+    opacity: 1;
+  }
+
 
 
   .hide-scrollbar::-webkit-scrollbar {

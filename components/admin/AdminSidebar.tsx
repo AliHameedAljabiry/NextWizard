@@ -47,12 +47,12 @@ const { data: currentUser } = useSWR('/api/auth/authorized-user', fetcher, {
 
             return (
                 <Link href={link.route} key={link.route}>
-                  <div className={cn('link', isSelected && 'bg-primary-admin dark:bg-white shadow-sm')}>
+                  <div className={cn('link', isSelected && 'bg-[#7777] dark:bg-[#7777] shadow-sm')}>
                     <div className='relative size-5'>
-                    <Image src={link.img} alt='admin' className={`${isSelected ? 'brightness-0 invert' : ''} object-contain`} width={20} height={20}/>
+                    <Image src={link.img} alt='admin' className={` ${isSelected ? 'dark:brightness-100 brightness-0 ' : 'brightness-0  dark:brightness-100'} object-contain`} width={20} height={20}/>
                     </div>
 
-                    <p className={cn(isSelected ? 'text-white dark:text-black ' : 'text-dark')}>{link.text}</p>
+                    <p className={cn(isSelected ? 'text-black dark:text-white ' : 'text-dark')}>{link.text}</p>
                   </div>
                 </Link>
             )
