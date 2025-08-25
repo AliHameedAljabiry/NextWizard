@@ -18,7 +18,7 @@ const StatsCard = ({ title, value, className }: { title: string, value: number, 
     )}
     whileHover={{ y: -5 }}
   >
-    <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">{title}</h3>
+    <h3 className="text-md font-medium text-gray-900 dark:text-gray-200">{title}</h3>
     <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{value}</p>
   </motion.div>
 )
@@ -135,8 +135,8 @@ export default function AdminHomePage() {
           className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800"
         />
         <StatsCard 
-          title="Total category" 
-          value={stats.totalcategory} 
+          title="Total Steps" 
+          value={stats.totalSteps} 
           className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800"
         />
       </div>
@@ -168,7 +168,7 @@ export default function AdminHomePage() {
            <div className='flex flex-row items-center justify-between w-full'>
               <CardTitle>Projects</CardTitle>
               <Button  className="mt-2 bg-[#0f0f0f] hover:bg-[#0f0f0f] dark:bg-white  text-white" asChild>
-                <Link className='text-white dark:text-black font-semibold' href="/admin/users">View All</Link>
+                <Link className='text-white dark:text-black font-semibold' href="/admin/projects">View All</Link>
               </Button>
             </div>
             
