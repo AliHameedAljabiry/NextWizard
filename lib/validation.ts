@@ -1,4 +1,3 @@
-import { auth } from '@/auth';
 import { z } from 'zod';
 
 export const signUpSchema = z.object({
