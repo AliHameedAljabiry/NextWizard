@@ -115,20 +115,21 @@ const Header = () => {
           <Link href='/my-profile' className={cn(
             'text-lg font-medium hover:text-primary', 
             pathname === '/my-profile' && 'text-primary')}>
-            <Avatar className='size-12'>
-              {currentUser?.image ? (
-                <Image 
-                  src={currentUser.image ?? 'https://placehold.co/400x600.png'} 
-                  alt={currentUser.name ?? "User"} 
-                  width={32} 
-                  height={32} 
-                  className='object-cover rounded-full' />
-              ) : (
-                <AvatarFallback className="bg-amber-100 text-black text-4xl font-bold">
-                  {gitInitials(currentUser?.fullName)}
-                </AvatarFallback>
-              )}
-            </Avatar>
+            <div className='w-12 h-12 rounded-full '>
+              <Avatar className='w-full h-full border-4 dark:border-gray-700  dark:shadow-[inset_0_0_10px_rgba(255,255,255,0.1),0_0_25px_rgba(0,0,0,0.7)]'>
+                {currentUser?.image ? (
+                  <Image 
+                    src={currentUser.image} 
+                    alt={currentUser.name ?? "User"} 
+                    fill 
+                    className='object-cover rounded-full' />
+                ) : (
+                  <AvatarFallback className="bg-amber-100 text-black text-4xl font-bold">
+                    {gitInitials(currentUser?.fullName)}
+                  </AvatarFallback>
+                )}
+              </Avatar>
+            </div>
           </Link>
         )}
       </div>
