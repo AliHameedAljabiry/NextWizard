@@ -169,7 +169,7 @@ const Header = () => {
             
             <Link href="/about" 
               className={cn(
-                'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary',
+                'text-lg text-gray-700  dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary',
                 pathname === '/about' && 'text-blue-100 dark:text-primary underline underline-offset-8'
               )}
               onClick={() => setIsMenuOpen(false)}
