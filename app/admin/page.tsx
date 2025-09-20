@@ -92,26 +92,50 @@ const RecentcategoryPreview = ({ category }: { category: any[] }) => (
   </div>
 )
 
+
+const fetcher = (url: string) => fetch(url).then(res => {
+  if (!res.ok) {
+    throw new Error('Failed to fetch users')
+  }
+  return res.json()
+})
+
 export default function AdminHomePage() {
   // Fetch stats
-  const { data: stats, isLoading: statsLoading, error: statsError } = useSWR('/api/admin/stats', (url) => 
-    fetch(url).then(res => res.json())
-  )
+  const { data: stats, isLoading, error: statsError } = useSWR('/api/admin/stats', fetcher, {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    refreshInterval: 3000, 
+  })
+  
+    // Fetch recent users
+  const { data: recentUsers, isLoading: usersLoading, error } = useSWR('/api/admin/users/all-users', fetcher, {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    refreshInterval: 3000, 
+  })
 
-  // Fetch recent users
-  const { data: recentUsers, isLoading: usersLoading } = useSWR('/api/admin/users/all-users?limit=3', (url) => 
-    fetch(url).then(res => res.json())
-  )
-
-  // Fetch recent projects
-  const { data: recentProjects, isLoading: projectsLoading } = useSWR('/api/admin/projects?limit=3', (url) => 
-    fetch(url).then(res => res.json())
-  )
+    // Fetch recent projects
+  const { data: recentProjects, isLoading: projectsLoading } = useSWR('/api/admin/projects', fetcher, {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    refreshInterval: 3000, 
+  })
 
   // Fetch recent category
-  const { data: recentcategory, isLoading: categoryLoading } = useSWR('/api/admin/all-categories?limit=3', (url) => 
-    fetch(url).then(res => res.json())
-  )
+  const { data: recentcategory, isLoading: categoryLoading } = useSWR('/api/admin/all-categories', fetcher, {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    refreshInterval: 3000, 
+  })
+  
+
+  if (isLoading) return <div>Loading admin dashboard...</div>
+ 
   console.log('Recent category:', recentcategory)
   if (statsError || !stats) return <div>Error loading admin dashboard</div>
 
