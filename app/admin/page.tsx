@@ -106,7 +106,7 @@ export default function AdminHomePage() {
     revalidateOnMount: true,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
-    refreshInterval: 3000, 
+    refreshInterval: 60000, 
   })
   
     // Fetch recent users
@@ -114,7 +114,7 @@ export default function AdminHomePage() {
     revalidateOnMount: true,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
-    refreshInterval: 3000, 
+    refreshInterval: 60000, 
   })
 
     // Fetch recent projects
@@ -122,7 +122,7 @@ export default function AdminHomePage() {
     revalidateOnMount: true,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
-    refreshInterval: 3000, 
+    refreshInterval: 60000, 
   })
 
   // Fetch recent category
@@ -130,7 +130,7 @@ export default function AdminHomePage() {
     revalidateOnMount: true,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
-    refreshInterval: 3000, 
+    refreshInterval: 60000, 
   })
   
 
