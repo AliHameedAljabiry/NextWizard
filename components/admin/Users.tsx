@@ -18,9 +18,6 @@ const MotionDiv = dynamic(() =>
 
 
 const fetcher = (url: string) => fetch(url).then(res => {
-  if (!res.ok) {
-    throw new Error('Failed to fetch users')
-  }
   return res.json()
 })
 
@@ -43,7 +40,7 @@ const Users = ({initialData}: {initialData: any}) => {
   }) : [];
 
   if (isLoading) return <div><Loading/></div>
-  if (error) return <div>Error loading users: {error.message}</div>
+  if (error) return <div className='dark:text-white'>Error loading users: {error.message}</div>
   if (!data) return <div>No users found</div>
 
   return (

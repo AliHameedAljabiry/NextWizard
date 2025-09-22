@@ -12,7 +12,6 @@ import Loading from '@/app/loading';
 
 
 const fetcher = (url: string) => fetch(url).then(res => {
-    if (!res.ok) throw new Error('Failed to fetch categories')
     return res.json()
 });
 
@@ -28,7 +27,7 @@ const Content = ({ initialData }: { initialData: any}) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   if (!data) return <div className='text-black dark:text-white'>No data found!</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div className='dark:text-white'>Error: {error.message}</div>;
   if (isLoading) return <div><Loading/></div>;
 
   return (
