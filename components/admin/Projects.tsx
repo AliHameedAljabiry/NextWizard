@@ -6,6 +6,7 @@ import Link from 'next/link'
 import useSWR from 'swr';
 import { FilePen } from 'lucide-react';
 import DeleteProject from './DeleteProject';
+import Loading from '@/app/loading';
 
 const fetcher = (url: string) => fetch(url).then(res => {
     if (!res.ok) throw new Error('Failed to fetch projects')
@@ -20,8 +21,9 @@ const ProjectsAdmin = ({initialData}: {initialData: Project}) => {
         revalidateOnReconnect: false,
         refreshInterval: 3000,    
     })
-    if (!data) return <div>Loading...</div>;
+    if (!data) return <div className='text-black dark:text-white'>No data found!</div>;
     if (error) return <div>Error: {error.message}</div>;
+    if (isLoading) return <div><Loading/></div>;
 
   return (
     <section className='bg-[#FFFFFF] p-5 rounded-2xl all-users min-h-screen'>

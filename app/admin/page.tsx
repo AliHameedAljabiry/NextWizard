@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { cn, gitInitials } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Loading from '../loading'
 
 // Stats Card Component
 const StatsCard = ({ title, value, className }: { title: string, value: number, className?: string }) => (
@@ -134,8 +135,8 @@ export default function AdminHomePage() {
   })
   
 
-  if (isLoading) return <div>Loading admin dashboard...</div>
- 
+  if (isLoading) return <div><Loading/></div>
+  
   console.log('Recent category:', recentcategory)
   if (statsError || !stats) return <div>Error loading admin dashboard</div>
 
@@ -179,7 +180,7 @@ export default function AdminHomePage() {
           </CardHeader>
           <CardContent>
             {usersLoading ? (
-              <div>Loading users...</div>
+              <div><Loading/></div>
             ) : (
               <RecentUsersPreview users={recentUsers || []} />
             )}
@@ -199,7 +200,7 @@ export default function AdminHomePage() {
           </CardHeader>
           <CardContent>
             {projectsLoading ? (
-              <div>Loading projects...</div>
+              <div><Loading/></div>
             ) : (
               <RecentProjectsPreview projects={recentProjects || []} />
             )}
@@ -218,7 +219,7 @@ export default function AdminHomePage() {
           </CardHeader>
           <CardContent>
             {categoryLoading ? (
-              <div>Loading category...</div>
+              <div><Loading/></div>
             ) : (
               <RecentcategoryPreview category={recentcategory || []} />
             )}

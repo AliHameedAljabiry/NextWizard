@@ -10,6 +10,7 @@ import { useState } from 'react'
 
 import dynamic from 'next/dynamic';
 import DeleteUser from '@/components/admin/DataManagment/DeleteUser'
+import Loading from '@/app/loading'
 const MotionDiv = dynamic(() =>
   import('framer-motion').then((mod) => mod.motion.div),
   { ssr: false }
@@ -41,7 +42,7 @@ const Users = ({initialData}: {initialData: any}) => {
       : b.fullName.localeCompare(a.fullName)
   }) : [];
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <div><Loading/></div>
   if (error) return <div>Error loading users: {error.message}</div>
   if (!data) return <div>No users found</div>
 

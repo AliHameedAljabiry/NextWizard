@@ -8,6 +8,7 @@ import DeleteStep from '@/components/admin/DeleteStep';
 import { FilePen, FileText } from 'lucide-react';
 import DeleteCategory from '@/components/admin/DeleteCategory';
 import DeletePart from '@/components/admin/DeletePart';
+import Loading from '@/app/loading';
 
 
 const fetcher = (url: string) => fetch(url).then(res => {
@@ -26,8 +27,9 @@ const Content = ({ initialData }: { initialData: any}) => {
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <div className='text-black dark:text-white'>No data found!</div>;
   if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <div><Loading/></div>;
 
   return (
    <section className='w-full rounded-2xl bg-white p-7 all-users'>

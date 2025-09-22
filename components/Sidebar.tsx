@@ -6,7 +6,24 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 
-export default function Sidebar({ data }) {
+type Part = {
+  id: string;
+  name: string;
+  slug: string;
+};
+
+type Category = {
+  id: string;
+  name: string;
+  slug: string;
+  parts: Part[];
+};
+
+interface SidebarProps {
+  data: Category[];
+}
+
+export default function Sidebar({ data }: SidebarProps) {
   const [openCats, setOpenCats] = useState<string[]>([]); // Now an array of open category IDs
   const pathname = usePathname();
 
