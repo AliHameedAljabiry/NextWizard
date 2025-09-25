@@ -30,12 +30,22 @@ const RecentUsersPreview = ({ users }: { users: any[] }) => (
     <div className="grid grid-cols-1 gap-4">
       {users.map((user) => (
         <div key={user.id} className="flex items-center space-x-3 relative">
-          <Avatar>
-            <AvatarFallback className="bg-amber-100 dark:bg-[#777] text-2xl">
-              {gitInitials(user.fullName)}
-            </AvatarFallback>
-          </Avatar>
-          {user.role === 'ADMIN' && <Avatar className="w-3 absolute h-3 bottom-0 left-4 bg-green  rounded-full"></Avatar>}
+          <div className='w-12 h-12 rounded-full '>
+            <Avatar className='w-full h-full  dark:border-gray-700  '>
+              {user?.image ? (
+                <Image 
+                  src={user.image} 
+                  alt={user.name ?? "User"} 
+                  fill 
+                  className='object-cover rounded-full' />
+              ) : (
+                <AvatarFallback className="bg-amber-100 text-black text-4xl font-bold">
+                  {gitInitials(user?.fullName)}
+                </AvatarFallback>
+              )}
+            </Avatar>
+          </div>
+          {user.role === 'ADMIN' && <Avatar className="w-3 absolute h-3 bottom-0 left-5 bg-green  rounded-full"></Avatar>}
           <div>
             <p className="text-sm font-medium">{user.fullName}</p>
             <p className="text-xs text-gray-500 dark:text-gray-400">{user.email}</p>
@@ -141,7 +151,7 @@ export default function AdminHomePage() {
   if (statsError || !stats) return <div>Error loading admin dashboard</div>
 
   return (
-    <div className="space-y-6 px-6">
+    <div className="space-y-6 ">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold dark:text-white">Admin Dashboard</h1>

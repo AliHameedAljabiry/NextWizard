@@ -32,7 +32,7 @@ const Content = ({ initialData }: { initialData: any}) => {
   if (isLoading) return <div><Loading/></div>;
 
   return (
-   <section className='w-full rounded-2xl bg-white p-7 all-users'>
+   <section className='w-full rounded-2xl bg-white p-2 sm:p-7 all-users'>
       <div className='flex flex-wrap items-center justify-between gap-2'>
           <h2 className='text-2xl font-semibold dark:text-white'>All Steps</h2>
           <div className='flex flex-row gap-5'>
@@ -73,25 +73,25 @@ const Content = ({ initialData }: { initialData: any}) => {
           {/* parts and their steps */}
          <div className='flex flex-col gap-5 mt-8'>
             {(selectedCategory ? data.filter((cat: any) => cat.id === selectedCategory) : data).map((cat: any) => (
-              <div key={cat.id} className='bg-light-300 dark:bg-black p-5 rounded-lg shadow'>
+              <div key={cat.id} className='bg-light-300 dark:bg-black p-2 sm:p-5 rounded-lg shadow'>
                 <div className='flex flex-row gap-5 w-full justify-between'>
                   <h3 className='text-xl font-semibold text-gray-800 dark:text-gray-300 mb-3'>{cat.name}</h3>
                   <DeleteCategory catId={cat.id} catName={cat.name}/>
                 </div>
                 
                 {cat.parts.map((part: any) => (
-                  <div key={part.id} className='mb-5 ml-5'>
+                  <div key={part.id} className='mb-5 ml-0 sm:ml-5'>
                     <div className='flex flex-row gap-5'>
                       <h4 className='text-lg font-medium text-primary-admin mb-2'>{part.name}</h4>
                       <DeletePart partId={part.id} partName={part.name}/>
                     </div>
                     
-                    <ul className='list-disc pl-6'>
+                    <ul className='list-disc pl-0 sm:pl-5 text-sm sm:text-base'>
                       {part.steps.map((step: any) => (
                         <li key={step.id} className='text-gray-700 bg-[#c5c5c5] dark:bg-[#242424] dark:text-gray-300 px-3 py-2 mb-2 rounded-lg flex flex-row items-center justify-between'>
-                          <div className='flex flex-row items-center gap-2'>
-                            <h2>Step {step.order}: </h2>
-                            <Link href={`docs/stepDetails/${step.id}`}>{step.title}</Link>
+                          <div className='flex flex-row items-center gap-2 min-w-0'>
+                            <h2 className='whitespace-nowrap'>Step {step.order}: </h2>
+                            <Link className='overflow-hidden text-ellipsis whitespace-nowrap pr-3' href={`docs/stepDetails/${step.id}`}>{step.title}</Link>
                          </div>
                           <div className='flex flex-row items-center  justify-center gap-3'>
                             <Link title='Step Details' href={`docs/stepDetails/${step.id}`}><FileText className='w-5 '/></Link>

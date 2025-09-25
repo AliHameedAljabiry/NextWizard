@@ -18,8 +18,8 @@ const AdminHeader = () => {
   return (
     <header className='admin-header dark:bg-[#050505] '>
         
-        <div>
-            <h2 className='text-2xl font-semibold dark:text-white text-dark-400'>Welcome, {currentUser?.fullName}</h2>
+        <div className='ml-12 md:ml-0 '>
+            <h2 className='text-lg sm:text-2xl font-semibold dark:text-white text-dark-400'>Welcome, {currentUser?.fullName}</h2>
             <p className='text-slate-500 text-base dark:text-gray-200'>Monitor all of your users and contant here</p>
         </div>
 

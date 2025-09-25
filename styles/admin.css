@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer components {
     .admin-container {
         @apply flex w-[calc(100%-264px)] dark:bg-[#050505] flex-1 flex-col bg-light-300 px-5 py-0 xs:p-10;
@@ -178,11 +180,11 @@
     }
 
     .admin-sidebar .link {
-        @apply flex flex-row items-center w-full gap-2 rounded-lg px-5 py-3.5 max-md:justify-center;
+        @apply flex flex-row items-center  gap-2 rounded-lg px-2 sm:px-6 py-3.5 ;
     }
 
     .admin-sidebar .link p {
-        @apply text-base font-medium max-md:hidden;
+        @apply text-base font-medium ;
     }
 
     .admin-sidebar .user {

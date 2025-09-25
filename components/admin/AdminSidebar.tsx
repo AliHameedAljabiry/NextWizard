@@ -25,7 +25,7 @@ const { data: currentUser } = useSWR('/api/auth/authorized-user', fetcher, {
   return (
     <div className='admin-sidebar dark:bg-[#0d1117] shadow dark:text-white max-w-64'>
       <div>
-        <Link href="/" className="text-2xl flex flex-row items-center ">
+        <Link href="/" className="text-2xl flex flex-row items-center mt-4 sm:mt-0">
           <Image
                 src="/icons/nextjs-icon.svg"
                 alt="logo"
@@ -33,7 +33,7 @@ const { data: currentUser } = useSWR('/api/auth/authorized-user', fetcher, {
                 width={50}
                 height={50}
               />
-          <h1 className="font-michroma  -ml-3 z-20  ">extWizard</h1>
+          <h1 className="font-michroma hidden sm:block  -ml-3 z-20  ">extWizard</h1>
         </Link>
 
         <div className='mt-10 flex flex-col gap-5'>
@@ -52,7 +52,7 @@ const { data: currentUser } = useSWR('/api/auth/authorized-user', fetcher, {
                     <Image src={link.img} alt='admin' className={` ${isSelected ? 'dark:brightness-100 brightness-0 ' : 'brightness-0  dark:brightness-100'} object-contain`} width={20} height={20}/>
                     </div>
 
-                    <p className={cn(isSelected ? 'text-black dark:text-white ' : 'text-dark')}>{link.text}</p>
+                    <p className={cn(isSelected ? ' text-black dark:text-white ' : 'text-dark')}>{link.text}</p>
                   </div>
                 </Link>
             )
@@ -60,14 +60,14 @@ const { data: currentUser } = useSWR('/api/auth/authorized-user', fetcher, {
         </div>
       </div>
 
-      <div className='mt-72 flex w-full flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-sm max-md:px-2'>
+      <div className='mt-72 flex  flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-sm max-md:px-2'>
         <Avatar>
           <AvatarFallback className='bg-amber-100 dark:text-black test-2xl'>
             {gitInitials(currentUser?.fullName || '')}
           </AvatarFallback>
         </Avatar>
 
-        <div className="flex flex-col min-w-0 flex-1">
+        <div className=" flex-col min-w-0 flex-1 hidden xs:flex">
           <p className="text-dark-200 dark:text-white font-semibold">
             {currentUser?.fullName}
           </p>

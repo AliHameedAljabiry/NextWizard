@@ -8,6 +8,7 @@ import { redirect } from 'next/navigation'
 import React, { ReactNode } from 'react'
 import '@/styles/admin.css';
 import { ThemeToggle } from '@/components/ThemeToggle'
+import MobileAdminSidebarToggle from '@/components/admin/MobileAdminSidebarToggle'
 
 const AdminLayout = async ({children} : {children: ReactNode}) => {
     const session = await auth() 
@@ -24,10 +25,16 @@ const AdminLayout = async ({children} : {children: ReactNode}) => {
     if (!isAdmin) redirect("/")
 
   return (
-    <main className='flex min-h-screen w-full flex-row'>
-        
-        <AdminSidebar/>
-        <div className="admin-container">
+    <main className='flex min-h-screen w-full flex-row '>
+        {/* Desktop sidebar - hidden on mobile */}
+        <aside className="hidden [@media(min-width:910px)]:block w-64 border-r border-gray-200 dark:border-gray-800 overflow-y-auto">
+          <AdminSidebar />
+        </aside>
+        {/* Mobile sidebar toggle button */}
+          <div className="md:hidden">
+            <MobileAdminSidebarToggle  />
+          </div>
+        <div className="admin-container p-2 sm:p-6">
             <AdminHeader />
             {children}
         </div>

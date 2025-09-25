@@ -44,7 +44,7 @@ const DeleteStep = ({ stepId, onDelete, title }: DeleteStepProps) => {
           className="text-red-500 hover:text-red-700"
           title="Delete Step"
         >
-          <Image src="/icons/admin/trash.svg" alt="Delete" width={20} height={20} />
+          <Image src="/icons/admin/trash.svg" alt="Delete" width={20} height={20} className='min-w-[20px]' />
         </button>
       </DialogTrigger>
 
