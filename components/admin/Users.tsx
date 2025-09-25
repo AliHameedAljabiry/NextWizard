@@ -150,11 +150,21 @@ const Users  = ({initialData}: {initialData: any}) => {
               {sortedUsers.map((user: User) => (
                 <tr key={user.id} className="border-t">
                   <td className="px-4 py-2 flex flex-row items-center text-sm gap-3">
-                    <Avatar>
-                      <AvatarFallback className='bg-amber-100 text-2xl'>
-                        {gitInitials(user.fullName)}
-                      </AvatarFallback>
-                    </Avatar>
+                    <div className='w-12 h-12 rounded-full '>
+                      <Avatar className='w-full h-full  dark:border-gray-700  '>
+                        {user?.image ? (
+                          <Image 
+                            src={user.image} 
+                            alt={user.fullName ?? "User"} 
+                            fill 
+                            className='object-cover rounded-full' />
+                        ) : (
+                          <AvatarFallback className="bg-amber-100 text-black text-4xl font-bold">
+                            {gitInitials(user?.fullName)}
+                          </AvatarFallback>
+                        )}
+                      </Avatar>
+                    </div>
                     <div className='flex flex-col max-md:hidden text-sm'>
                       <p className='text-dark-200 dark:text-white font-semibold'>{user.fullName}</p>
                       <p className='text-light-500 dark:text-gray-300 text-xs max-xl:hidden'>{user.email}</p>

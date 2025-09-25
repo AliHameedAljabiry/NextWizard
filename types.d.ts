@@ -8,6 +8,7 @@ interface User {
   role: 'USER' | 'ADMIN';
   lastActivityDate: Date;
   createdAt: Date;
+  image?: string;
 }
 interface AuthCredentials {
   fullName: string

@@ -11,7 +11,8 @@ const AllUsers = async () => {
       fullName: users.fullName,
       role: users.role,
       createdAt: users.createdAt,
-      lastActivityDate: users.lastActivityDate
+      lastActivityDate: users.lastActivityDate,
+      image: users.image
     })
     .from(users)
     .orderBy(desc(users.createdAt))
