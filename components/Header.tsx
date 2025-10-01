@@ -29,7 +29,7 @@ const Header = () => {
 
   return (
     <div className=" flex max-h-20 w-full items-center justify-between p-4 text-black dark:text-light-600 bg-[#FFFFFF] dark:bg-[#050505] shadow-md border-b dark:border-gray-800">
-      <div className='flex flex-row items-center justify-between gap-20'>
+      <div className='flex flex-row items-center justify-between gap-10 xl:gap-20'>
         <Link href="/" className="text-2xl flex flex-row items-center ml-12 md:ml-0">
           <Image
             src="icons/nextjs-icon.svg"
@@ -44,7 +44,7 @@ const Header = () => {
 
         {/* Desktop Navigation - Hidden on medium and smaller screens */}
         {currentUser?.id && (
-          <div className='hidden md:flex flex-row gap-5 mr-5'>
+          <div className='hidden lg:flex flex-row gap-5 mr-0'>
             <Link href="/" className={cn(
               'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary',
               pathname === '/' && 'text-blue-100 dark:text-primary underline underline-offset-8')}>
@@ -85,7 +85,7 @@ const Header = () => {
 
           </div>
         )}
-        <form className="flex items-center bg-inherit rounded-lg border border-gray-200 px-3 py-1 shadow-sm min-w-[320px] w-full max-w-md">
+        <form className="hidden xs:flex items-center mr-3  bg-inherit rounded-lg border border-gray-200 px-3 py-1 shadow-sm min-w-[200px] w-full max-w-md">
           <SearchBox/>
         </form>
       </div>
@@ -95,7 +95,7 @@ const Header = () => {
         {currentUser?.id && (
           <button 
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-md"
+            className="lg:hidden p-2 rounded-md"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -142,7 +142,7 @@ const Header = () => {
 
       {/* Mobile Menu - Only visible when isMenuOpen is true */}
       {isMenuOpen && currentUser?.id && (
-        <div className="md:hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-end" onClick={() => setIsMenuOpen(false)}>
+        <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-end" onClick={() => setIsMenuOpen(false)}>
           <div className="w-64 h-full bg-white dark:bg-gray-900 p-6 pt-16 shadow-lg flex flex-col gap-6" onClick={(e) => e.stopPropagation()}>
             <Link href="/" 
               className={cn(
