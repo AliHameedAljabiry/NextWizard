@@ -8,7 +8,7 @@ const NewContent = () => {
     <>
         <GoBack/>
 
-        <section className='w-full max-w-4xl auth-form data-form mt-7 '>
+        <section className='w-full max-w-4xl auth-form data-form mt-7 max-h-[730px] overflow-auto hide-scrollbar'>
             <DataForm type="create"/>
         </section>
     </>
