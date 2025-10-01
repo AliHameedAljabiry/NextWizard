@@ -26,7 +26,7 @@ const ProjectsAdmin = ({initialData}: {initialData: Project}) => {
     if (isLoading) return <div><Loading/></div>;
 
   return (
-    <section className='bg-[#FFFFFF] p-5 rounded-2xl all-users min-h-screen'>
+    <section className='bg-[#FFFFFF] p-5 rounded-2xl all-users min-h-[800px]'>
         <div className='flex flex-wrap items-center justify-between gap-2'>
           <h2 className='text-2xl font-semibold dark:text-white'>All Projects</h2>
           <div className='flex flex-row gap-5'>

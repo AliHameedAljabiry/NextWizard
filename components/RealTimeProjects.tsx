@@ -6,6 +6,7 @@ import { Card, CardTitle } from './ui/card';
 import Image from 'next/image';
 import { Avatar } from './ui/avatar';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 const fetcher = (url: string) => fetch(url).then((res) => {
     if (!res.ok) throw new Error('Failed to fetch projects');
@@ -28,7 +29,9 @@ export default function RealTimeProjects({initialData}: {initialData: Project}) 
             {data.map((project: Project) => (
                 <Card key={project.id} className=" border rounded-lg shadow hover:shadow-lg transition min-h-[450px] relative overflow-hidden">
                     <div className='w-full h-1/2 relative'>
-                        {project.imageUrl && <Image src={project.imageUrl} alt='card' fill className='object-fill'/>}
+                        <Link href={`projects/${project.id}`}>
+                            {project.imageUrl && <Image src={project.imageUrl} alt='card' fill className='object-fill'/>}
+                        </Link>
                     </div>
                     <div className='px-4 mt-2  text-sm text-gray-900 font-medium dark:text-gray-300'>
                         Published on:<span> </span> 
@@ -43,7 +46,11 @@ export default function RealTimeProjects({initialData}: {initialData: Project}) 
                         )}
                     </div>
                     <div className='px-4 h-1/3 flex flex-col items-center justify-center'>
-                        <CardTitle className="text-md font-semibold mb-2">{project.title}</CardTitle>
+                        <CardTitle className="text-md font-semibold mb-2">
+                            <Link href={`projects/${project.id}`}>
+                                {project.title}             
+                            </Link>
+                        </CardTitle>
                         <div className='flex flex-row items-center justify-between w-full border rounded-lg p-1 shadow'>
                             <p className='font-semibold'>By: {project.author}</p>
                             {project.authorImageUrl && <Image src={project.authorImageUrl} alt={project.author} width={40} height={40} className="rounded-full"/>}

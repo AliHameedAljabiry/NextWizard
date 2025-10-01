@@ -7,7 +7,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { Avatar, AvatarFallback } from './ui/avatar';
-import { Menu, X } from 'lucide-react';
+import { Menu, Search, X } from 'lucide-react';
+import { Input } from './ui/input';
+import SearchBox from './Search';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
@@ -26,7 +28,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex w-full items-center justify-between p-4 text-black dark:text-light-600 bg-[#FFFFFF] dark:bg-[#050505] shadow-md border-b dark:border-gray-800">
+    <div className=" flex max-h-20 w-full items-center justify-between p-4 text-black dark:text-light-600 bg-[#FFFFFF] dark:bg-[#050505] shadow-md border-b dark:border-gray-800">
       <div className='flex flex-row items-center justify-between gap-20'>
         <Link href="/" className="text-2xl flex flex-row items-center ml-12 md:ml-0">
           <Image
@@ -80,8 +82,12 @@ const Header = () => {
                   Dashboard
               </Link>  
             )}
+
           </div>
         )}
+        <form className="flex items-center bg-inherit rounded-lg border border-gray-200 px-3 py-1 shadow-sm min-w-[320px] w-full max-w-md">
+          <SearchBox/>
+        </form>
       </div>
 
       <div className="flex items-center gap-5">

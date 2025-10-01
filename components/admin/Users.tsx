@@ -46,7 +46,7 @@ const Users  = ({initialData}: {initialData: any}) => {
   if (!data) return <div>No users found</div>
 
   return (
-    <section className='bg-[#FFFFFF] p-3 md:p-5 rounded-2xl all-users min-h-screen'>
+    <section className='bg-[#FFFFFF] p-3 md:p-5 rounded-2xl all-users min-h-[800px]'>
       <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-3'>
         <h1 className='font-semibold text-xl dark:text-white'>All Users</h1>
         <Button 

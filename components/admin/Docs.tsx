@@ -3,12 +3,13 @@
 import useSWR from 'swr';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DeleteStep from '@/components/admin/DeleteStep';
 import { FilePen, FileText } from 'lucide-react';
 import DeleteCategory from '@/components/admin/DeleteCategory';
 import DeletePart from '@/components/admin/DeletePart';
 import Loading from '@/app/loading';
+import { useRouter, useSearchParams } from "next/navigation";
 
 
 const fetcher = (url: string) => fetch(url).then(res => {
@@ -17,6 +18,8 @@ const fetcher = (url: string) => fetch(url).then(res => {
 });
 
 const Content = ({ initialData }: { initialData: any}) => {
+  const searchParams = useSearchParams();
+  const categoryFromUrl = searchParams.get("category");
   const {data, isLoading, error, mutate} = useSWR('/api/admin/all-categories', fetcher, {
     fallbackData: initialData,
     revalidateOnMount: true,
@@ -24,15 +27,26 @@ const Content = ({ initialData }: { initialData: any}) => {
     revalidateOnReconnect: false,
     refreshInterval: 3000,    
   })
+  
+  const router = useRouter();
 
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(
+    categoryFromUrl
+  );
+  
+  useEffect(() => {
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [categoryFromUrl]);
+
 
   if (!data) return <div className='text-black dark:text-white'>No data found!</div>;
   if (error) return <div className='dark:text-white'>Error: {error.message}</div>;
   if (isLoading) return <div><Loading/></div>;
 
   return (
-   <section className='w-full rounded-2xl bg-white p-2 sm:p-7 all-users'>
+   <section className='w-full rounded-2xl bg-white p-2 sm:p-7 all-users max-h-[800px] overflow-auto '>
       <div className='flex flex-wrap items-center justify-between gap-2'>
           <h2 className='text-2xl font-semibold dark:text-white'>All Steps</h2>
           <div className='flex flex-row gap-5'>
@@ -62,7 +76,10 @@ const Content = ({ initialData }: { initialData: any}) => {
                 className={`px-3 py-2 rounded-lg font-medium text-lg shadow
                   ${selectedCategory === cat.id ? 'bg-primary-admin text-white' : 'bg-inherit dark:bg-white text-gray-800'}`}
                 key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
+                onClick={() => {
+                  setSelectedCategory(cat.id);
+                  router.push(`/admin/docs?categoryId=${cat.id}`);
+                }}
               >
                 {cat.name}
               </Button>

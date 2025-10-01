@@ -82,20 +82,20 @@ interface Props extends Partial<Step> {
       if(type === "create") {
         const result = await createStep(values)
       
-      if (result.success) {
-        toast({
-          title: "Success",
-          description: "Step created successfully",
-        });
-  
-        router.push(`/admin/docs`);
-      } else {
-        toast({
-          title: "Error",
-          description: result.message,
-          variant: "destructive",
-        });
-      }
+        if (result.success) {
+          toast({
+            title: "Success",
+            description: "Step created successfully",
+          });
+    
+          router.push(`/admin/docs`);
+        } else {
+          toast({
+            title: "Error",
+            description: result.message,
+            variant: "destructive",
+          });
+        }
 
     }else if (type === "update" && stepId) {
       const result = await updateStep({ ...values, stepId });

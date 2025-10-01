@@ -151,7 +151,7 @@ export default function AdminHomePage() {
   if (statsError || !stats) return <div>Error loading admin dashboard</div>
 
   return (
-    <div className="space-y-6 ">
+    <div className="space-y-6 max-h-screen overflow-auto hide-scrollbar">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold dark:text-white">Admin Dashboard</h1>

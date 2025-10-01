@@ -1,9 +1,8 @@
 'use client';
 
 import useSWR from 'swr'
-import { Search } from 'lucide-react'
 import React from 'react'
-import { Input } from '../ui/input'
+import AdminSearchBox from './AdminSearch';
 
 
 const fetcher = (url: string) => fetch(url).then(res => res.json())
@@ -24,13 +23,8 @@ const AdminHeader = () => {
         </div>
 
         
-        <form className="flex items-center bg-white rounded-md border border-gray-200 px-3 py-1 shadow-sm min-w-[320px] w-full max-w-md">
-          <Search className="text-[#647488] mr-2" size={20} />
-          <Input
-            type="text"
-            placeholder="Search users, books by title, author, or genre."
-            className="flex-1 bg-transparent border-none outline-none focus:ring-0 text-[#647488] placeholder-[#647488]"
-          />
+        <form className="flex items-center bg-inherit rounded-lg border border-gray-200 px-3 py-1 shadow-sm min-w-[320px] w-full max-w-md">
+          <AdminSearchBox/>
         </form>
     </header>
   )
