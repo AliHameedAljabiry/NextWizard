@@ -83,7 +83,7 @@ function Footer() {
           <div className="border-t border-slate-800 pt-8 flex flex-row gap-5 justify-between items-center flex-wrap">
             <div className=" flex flex-col gap-5 justify-between items-center ">
                 <p className="dark:text-slate-400 text-sm">
-                © 2024 NextWizard. All rights reserved.
+                © 2025 NextWizard. All rights reserved.
                 </p>
                 <div className="flex space-x-6 text-sm dark:text-slate-400 mt-4 sm:mt-0">
                     <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
