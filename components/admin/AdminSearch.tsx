@@ -60,7 +60,7 @@ export default function AdminSearchBox() {
               <li key={c.id}>
                 <Link
                   href={`/admin/docs?category=${c.id}`} 
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
+                  className="block px-0.5 xs:px-4 py-2 text-xs md:text-[16px] hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
                   onClick={() => setIsOpen(false)} // close after click
                 >
                   📂 {c.name}
@@ -71,7 +71,7 @@ export default function AdminSearchBox() {
               <li key={p.id}>
                 <Link
                   href={`/admin/docs?category=${p.partCategory}`}
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
+                  className="block px-0.5 xs:px-4 py-2 text-xs md:text-[16px] hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   🧩 {p.name}
@@ -82,7 +82,7 @@ export default function AdminSearchBox() {
               <li key={s.id}>
                 <Link
                   href={`/admin/docs/stepDetails/${s.id}`}
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
+                  className="block px-0.5 xs:px-4 py-2 text-xs md:text-[16px] hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   ➡️ {s.title}
@@ -93,7 +93,7 @@ export default function AdminSearchBox() {
               <li key={p.id}>
                 <Link
                   href={`/projects/${p.id}`}
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
+                  className="block px-0.5 xs:px-4 py-2 text-xs md:text-[16px] hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   📘 {p.title}

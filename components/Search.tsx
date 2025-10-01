@@ -54,13 +54,13 @@ export default function SearchBox() {
 
       {/* Results dropdown */}
       {isOpen && data && (
-        <div className="absolute top-full left-0 mt-2 w-full max-h-60 overflow-auto bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-lg rounded-md z-50">
+        <div className="absolute top-full left-0 mt-2 w-full max-h-60 overflow-auto hide-scrollbar bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-lg rounded-md z-50">
           <ul className="divide-y divide-gray-200 dark:divide-gray-700">
             {data.categories.map((c: any) => (
               <li key={c.id}>
                 <Link
                   href={`/docs/${c.slug}/${c.firstPartSlug}`}
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
+                  className="block px-0.5 xs:px-4 py-2 text-xs md:text-[16px] hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
                   onClick={() => setIsOpen(false)} // close after click
                 >
                   📂 {c.name}
@@ -71,7 +71,7 @@ export default function SearchBox() {
               <li key={p.id}>
                 <Link
                   href={`/docs/${data.categories.slug}/${p.slug}`}
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
+                  className="block px-0.5 xs:px-4 py-2 text-xs md:text-[16px] hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   🧩 {p.name}
@@ -82,7 +82,7 @@ export default function SearchBox() {
               <li key={s.id}>
                 <Link
                   href={`/docs/stepDetails/${s.id}`}
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
+                  className="block px-0.5 xs:px-4 py-2 text-xs md:text-[16px] hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   ➡️ {s.title}
@@ -93,7 +93,7 @@ export default function SearchBox() {
               <li key={p.id}>
                 <Link
                   href={`/projects/${p.id}`}
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
+                  className="block px-0.5 xs:px-4 py-2 text-xs md:text-[16px] hover:bg-gray-100 dark:hover:bg-gray-800 text-black dark:text-white"
                   onClick={() => setIsOpen(false)}
                 >
                   📘 {p.title}

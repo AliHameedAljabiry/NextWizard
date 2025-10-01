@@ -29,8 +29,8 @@ const Header = () => {
 
   return (
     <div className=" flex max-h-20 w-full items-center justify-between p-4 text-black dark:text-light-600 bg-[#FFFFFF] dark:bg-[#050505] shadow-md border-b dark:border-gray-800">
-      <div className='flex flex-row items-center justify-between gap-10 xl:gap-20'>
-        <Link href="/" className="text-2xl flex flex-row items-center ml-12 md:ml-0">
+      <div className='flex flex-row items-center justify-between gap-3 xl:gap-20'>
+        <Link href="/" className="text-2xl flex flex-row items-center ml-5 sm:ml-12 md:ml-0">
           <Image
             src="icons/nextjs-icon.svg"
             alt="logo"
@@ -85,12 +85,12 @@ const Header = () => {
 
           </div>
         )}
-        <form className="hidden xs:flex items-center mr-3  bg-inherit rounded-lg border border-gray-200 px-3 py-1 shadow-sm min-w-[200px] w-full max-w-md">
+        <form className=" items-center mr-0 xs:mr-3  bg-inherit rounded-lg border border-gray-200 px-3 py-1 shadow-sm min-w-[110px] sm:min-w-[200px] xl:min-w-[400px] w-full ">
           <SearchBox/>
         </form>
       </div>
 
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-1 xs:gap-5">
         {/* Mobile menu button - Only visible on medium and smaller screens */}
         {currentUser?.id && (
           <button 
