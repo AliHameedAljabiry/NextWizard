@@ -26,7 +26,7 @@ const AdminLayout = async ({children} : {children: ReactNode}) => {
 
   return (
     <main className='flex min-h-screen w-full flex-row '>
-        {/* Desktop sidebar - hidden on mobile */}
+        {/* Desktop sidebar - hidden on mobile and small devices */}
         <aside className="hidden [@media(min-width:910px)]:block w-64 border-r border-gray-200 dark:border-gray-800 overflow-y-auto">
           <AdminSidebar />
         </aside>

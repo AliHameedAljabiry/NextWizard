@@ -16,7 +16,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: currentUser } = useSWR('/api/auth/authorized-user', fetcher, {
-    refreshInterval: 3000,
+    refreshInterval: 500,
     revalidateOnFocus: true,
     shouldRetryOnError: false,
   });
