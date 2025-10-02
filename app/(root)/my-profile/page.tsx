@@ -29,6 +29,7 @@ const MyProfile = () => {
     const router = useRouter();
 
     
+    if (!currentUser) redirect("/sign-in");
     
     const handleSignOut = async () => {
         try {

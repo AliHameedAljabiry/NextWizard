@@ -1,3 +1,4 @@
+import { auth } from '@/auth'
 import { Avatar } from '@/components/ui/avatar'
 import { Card, CardTitle } from '@/components/ui/card'
 import { db } from '@/database/drizzle'
@@ -5,10 +6,13 @@ import { projects } from '@/database/schema'
 import { cn } from '@/lib/utils'
 import { desc, eq } from 'drizzle-orm'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
  const projectId = (await params).id
+  const session = await auth()
+  if (!session) redirect("/sign-in");
 
   const project = await db.select().from(projects).where(eq(projects.id, projectId))
   const currentProject = project[0]
@@ -47,13 +51,13 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                     </div>
 
                     <div className='flex flex-col items-center justify-around '>
-                        <a href={currentProject.githubUrl} target="_blank" rel="noopener noreferrer" className='text-lg bg-[#e0e0e0] dark:bg-[#1a1919] w-full flex items-center shadow p-3 rounded-lg hover:bg-[#bdbdbd] mb-3'>
+                        <a href={currentProject.githubUrl ?? undefined} target="_blank" rel="noopener noreferrer" className='text-lg bg-[#e0e0e0] dark:bg-[#1a1919] w-full flex items-center shadow p-3 rounded-lg hover:bg-[#bdbdbd] mb-3'>
                             <Avatar className='w-14 h-14'>
                                 <Image src="/icons/github-icon.svg" alt="GitHub Logo" className='dark:invert' width={100} height={100}/>
                             </Avatar>
                             <span className='ml-2 dark:text-gray-300'>GitHub Repo</span>
                         </a>
-                        <a href={currentProject.videoUrl} target="_blank" rel="noopener noreferrer" className='text-lg bg-[#e0e0e0] dark:bg-[#1a1919] w-full flex items-center shadow p-3 rounded-lg hover:bg-[#bdbdbd] mb-3'>
+                        <a href={currentProject.videoUrl ?? undefined} target="_blank" rel="noopener noreferrer" className='text-lg bg-[#e0e0e0] dark:bg-[#1a1919] w-full flex items-center shadow p-3 rounded-lg hover:bg-[#bdbdbd] mb-3'>
                             <Avatar className='w-14 h-14'>
                                 <Image src="/icons/youtube.svg" alt="GitHub Logo"  width={100} height={100}/>
                             </Avatar>
