@@ -12,10 +12,7 @@ import { SWRConfig } from "swr";
 const Layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
 
-  // Redirect if no session
-  if (!session?.user?.id) {
-    redirect("/sign-in");
-  }
+  
 
   // Track last activity (non-blocking with `after`)
   after(async () => {

@@ -1,6 +1,6 @@
 'use client';
 
-import useSWR from 'swr';
+// import useSWR from 'swr';
 import { cn, gitInitials } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,25 +10,25 @@ import { Avatar, AvatarFallback } from './ui/avatar';
 import { Menu, Search, X } from 'lucide-react';
 import SearchBox from './Search';
 
-const fetcher = (url: string) => fetch(url).then(res => res.json());
+// const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 type HeaderProps = {
-  session: any | null; // comes from Layout
+  session: any | null; 
 };
 
 const Header = ({ session }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // hydrate SWR with session
-  const { data: currentUser } = useSWR(
-    session ? '/api/auth/authorized-user' : null,
-    fetcher,
-    {
-      fallbackData: session, // <-- this prevents flicker
-      revalidateOnFocus: true,
-      shouldRetryOnError: false,
-    }
-  );
-
+  // const { data: currentUser } = useSWR(
+  //   session ? '/api/auth/authorized-user' : null,
+  //   fetcher,
+  //   {
+  //     fallbackData: session,
+  //     revalidateOnFocus: true,
+  //     shouldRetryOnError: false,
+  //   }
+  // );
+  const currentUser = session?.user
   const pathname = usePathname();
 
   const toggleMenu = () => {
