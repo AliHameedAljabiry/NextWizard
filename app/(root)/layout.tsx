@@ -41,27 +41,13 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   });
 
   return (
-    <SWRConfig
-      value={{
-        fallback: {
-          // hydrate SWR with the current user so Header won’t flicker
-          "/api/auth/authorized-user": {
-            id: session.user.id,
-            email: session.user.email,
-            fullName: session.user.name,
-            role: session.user.role,
-            status: session.user.status,
-            image: session.user.image
-          },
-        },
-      }}
-    >
+    
       <main className="root-container">
-        <Header />
+        <Header session={session?.user ?? null} />
         <div className="min-h-screen bg-light-300 dark:bg-[#0d1117]">{children}</div>
         <Footer />
       </main>
-    </SWRConfig>
+   
   );
 };
 

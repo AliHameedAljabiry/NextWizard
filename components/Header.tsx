@@ -8,18 +8,26 @@ import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import { Avatar, AvatarFallback } from './ui/avatar';
 import { Menu, Search, X } from 'lucide-react';
-import { Input } from './ui/input';
 import SearchBox from './Search';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
-const Header = () => {
+type HeaderProps = {
+  session: any | null; // comes from Layout
+};
+
+const Header = ({ session }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { data: currentUser } = useSWR('/api/auth/authorized-user', fetcher, {
-    refreshInterval: 500,
-    revalidateOnFocus: true,
-    shouldRetryOnError: false,
-  });
+  // hydrate SWR with session
+  const { data: currentUser } = useSWR(
+    session ? '/api/auth/authorized-user' : null,
+    fetcher,
+    {
+      fallbackData: session, // <-- this prevents flicker
+      revalidateOnFocus: true,
+      shouldRetryOnError: false,
+    }
+  );
 
   const pathname = usePathname();
 
