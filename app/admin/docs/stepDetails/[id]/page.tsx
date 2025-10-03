@@ -17,7 +17,7 @@ const StepDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
     const codeHtml = step.code ? await highlightCode(step.code, 'ts') : null;
 
     return (
-        <div className='max-w-4xl'>
+        <div className='max-w-4xl max-h-[800px] overflow-auto hide-scrollbar'>
             <div className='flex flex-row gap-1'>
                 <h1 className='text-xl font-bold dark:text-white'>{`${stepDetails.category.name} >>`}</h1>
                 <h1 className='text-xl font-bold dark:text-white'>{stepDetails.part.name}</h1>
