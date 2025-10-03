@@ -7,7 +7,7 @@ import Link from "next/link";
 const Layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
 
-  if (session) redirect("/docs");
+
 
   return (
     <main className="auth-container">
