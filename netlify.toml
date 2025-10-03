@@ -5,3 +5,5 @@
 
 [build.environment]
   NPM_FLAGS = "--legacy-peer-deps"
+  NEXT_PUBLIC_PROD_API_ENDPOINT = "https://nextwizard.netlify.app/"
+
