@@ -19,10 +19,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
 
-  // Enable SWC minification (better for Netlify)
-  swcMinify: true,
   
-  // Remove the turbopack section entirely - it's for dev only
 };
 
 module.exports = nextConfig;
