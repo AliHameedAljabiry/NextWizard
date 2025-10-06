@@ -15,36 +15,43 @@ import { mutate } from 'swr';
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const MyProfile = () => {
-    const { data: currentUser, error, isLoading } = useSWR('/api/auth/authorized-user', fetcher, {
-        refreshInterval: 3000,
-        revalidateOnFocus: true,
-        revalidateOnReconnect: true,
-    });
+    const [isSigningOut, setIsSigningOut] = useState(false);
+    const { data: currentUser, error, isLoading } = useSWR(
+        isSigningOut ? null : '/api/auth/authorized-user', // Disable fetching during sign-out
+        fetcher, 
+        {
+            refreshInterval: 3000,
+            revalidateOnFocus: true,
+            revalidateOnReconnect: true,
+        }
+    );
     
     const [open, setOpen] = useState(false);
     const router = useRouter();
 
-    // Use useEffect for redirect instead of direct call
     useEffect(() => {
-        if (!isLoading && !currentUser) {
+        if (!isLoading && !currentUser && !isSigningOut) {
             router.push('/sign-in');
         }
-        }, [currentUser, isLoading, router]);
+    }, [currentUser, isLoading, router, isSigningOut]);
 
-        console.log(currentUser);
+    console.log("Current User:", currentUser);
 
-        const handleSignOut = async () => {
+    const handleSignOut = async () => {
+        setIsSigningOut(true); // Disable SWR fetching
         try {
-            // Clear all cache first
+            // Clear ALL SWR cache more aggressively
             mutate(() => true, undefined, { revalidate: false });
             
-            // Sign out
-            await signOut({ 
-                redirect: true,
-                callbackUrl: '/' 
+            // Call signOut and wait for it to complete
+            const result = await signOut({ 
+                redirect: false,
+                callbackUrl: '/'
             });
             
-            // Force hard navigation as fallback
+            console.log("Sign out result:", result);
+            
+            // Force a hard redirect to clear everything
             window.location.href = '/';
             
         } catch (error) {
@@ -66,7 +73,7 @@ const MyProfile = () => {
     }
 
     // Don't render if no user (will redirect via useEffect)
-    if (!currentUser) {
+    if (!currentUser && !isSigningOut) {
         return (
             <div className="min-h-screen flex items-center justify-center p-4">
                 <div className="text-center">Redirecting...</div>
@@ -98,7 +105,7 @@ const MyProfile = () => {
                 </div>
 
                 {/* Info Section */}
-                {!isLoading && currentUser && (
+                {currentUser && (
                     <div className="text-center space-y-3 dark:text-white">
                         <h2 className="text-2xl font-semibold">{currentUser?.fullName}</h2>
                         {currentUser?.fullName && (
@@ -111,7 +118,7 @@ const MyProfile = () => {
                 )}
 
                 {/* Sign Out Button */}
-                <div className="flex justify-center items-center h-1/2">
+                <div className="flex justify-center items-center h-1/2 mt-6">
                     <Dialog open={open} onOpenChange={setOpen}>
                         <DialogTrigger asChild>
                             <button
@@ -137,8 +144,9 @@ const MyProfile = () => {
                                 <Button 
                                     variant="destructive" 
                                     onClick={handleSignOut}
+                                    disabled={isSigningOut}
                                 >
-                                    Sign Out
+                                    {isSigningOut ? "Signing Out..." : "Sign Out"}
                                 </Button>
                             </DialogFooter>
                         </DialogContent>
