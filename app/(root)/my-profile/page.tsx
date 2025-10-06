@@ -29,35 +29,28 @@ const MyProfile = () => {
         if (!isLoading && !currentUser) {
             router.push('/sign-in');
         }
-    }, [currentUser, isLoading, router]);
+        }, [currentUser, isLoading, router]);
 
-    console.log(currentUser);
+        console.log(currentUser);
 
-    const handleSignOut = async () => {
+        const handleSignOut = async () => {
         try {
-            // Clear all SWR cache
-            mutate('/api/auth/authorized-user', null, { revalidate: false });
-            mutate('/api/auth/session', null, { revalidate: false });
+            // Clear all cache first
+            mutate(() => true, undefined, { revalidate: false });
             
-            // Sign out and wait for it to complete
+            // Sign out
             await signOut({ 
-                redirect: false,
+                redirect: true,
                 callbackUrl: '/' 
             });
             
-            // Clear any remaining cache
-            mutate(() => true, undefined, { revalidate: false });
-            
-            // Redirect to home page
-            router.push('/');
-            
-            // Force refresh after a short delay
-            setTimeout(() => {
-                router.refresh();
-            }, 100);
+            // Force hard navigation as fallback
+            window.location.href = '/';
             
         } catch (error) {
             console.error("Error signing out:", error);
+            // Fallback: force hard navigation
+            window.location.href = '/';
         } finally {
             setOpen(false);
         }
