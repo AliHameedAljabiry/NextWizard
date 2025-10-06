@@ -98,35 +98,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
 
   callbacks: {
-    // NEW: Authorization callback for middleware
-    authorized({ request, auth }) {
-      const { pathname } = request.nextUrl;
-      
-      // Public routes that don't require authentication
-      const publicPaths = [
-        "/sign-in",
-        "/api/auth/[...nextauth]",
-        "/_next/",
-        "/favicon.ico",
-        "/images/",
-        "/css/",
-        "/js/"
-      ];
-      
-      // Check if the current path is public
-      const isPublicPath = publicPaths.some(path => 
-        pathname.startsWith(path)
-      );
-      
-      // If it's a public path, allow access
-      if (isPublicPath) return true;
-      
-      // If user is authenticated, allow access
-      if (auth) return true;
-      
-      // Otherwise, redirect to sign-in
-      return false;
-    },
+    // REMOVED the authorized callback - let middleware handle routing
 
     async signIn({ user, account, profile }) {
       if (account?.provider !== "credentials") {
