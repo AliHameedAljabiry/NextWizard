@@ -16,7 +16,6 @@ declare module "next-auth" {
       role: string;
       status: string;
       image: string;
-     
     };
   }
   interface User {
@@ -26,11 +25,14 @@ declare module "next-auth" {
     role: string;
     status: string;
     image: string;
-   
   }
 }
- 
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  // Netlify-specific fixes
+  trustHost: true, // Crucial for Netlify deployment
+  useSecureCookies: process.env.NODE_ENV === "production",
+  
   session: { strategy: "jwt" },
   providers: [
     GitHub({
@@ -41,7 +43,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           email: profile.email,
           image: profile.avatar_url,             
           username: profile.login || null,
-         
         };
       },
     }),
@@ -51,7 +52,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           id: profile.sub,
           name: profile.name,
           email: profile.email,
-           image: profile.picture,                
+          image: profile.picture,                
           username: profile.given_name || null,
         };
       },
@@ -79,7 +80,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           user[0].password
         );
 
-
         if (!isValidPassword) return null;
 
         return {
@@ -98,6 +98,36 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
 
   callbacks: {
+    // NEW: Authorization callback for middleware
+    authorized({ request, auth }) {
+      const { pathname } = request.nextUrl;
+      
+      // Public routes that don't require authentication
+      const publicPaths = [
+        "/sign-in",
+        "/api/auth/[...nextauth]",
+        "/_next/",
+        "/favicon.ico",
+        "/images/",
+        "/css/",
+        "/js/"
+      ];
+      
+      // Check if the current path is public
+      const isPublicPath = publicPaths.some(path => 
+        pathname.startsWith(path)
+      );
+      
+      // If it's a public path, allow access
+      if (isPublicPath) return true;
+      
+      // If user is authenticated, allow access
+      if (auth) return true;
+      
+      // Otherwise, redirect to sign-in
+      return false;
+    },
+
     async signIn({ user, account, profile }) {
       if (account?.provider !== "credentials") {
         const existingUsers = await db
@@ -151,10 +181,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.role = token.role as string;
         session.user.status = token.status as string;
         session.user.image = token.image as string;
-        
       }
       return session;
     },
   }
-
-})
+});
