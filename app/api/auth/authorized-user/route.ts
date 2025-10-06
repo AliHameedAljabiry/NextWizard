@@ -30,7 +30,13 @@ export async function GET() {
         .where(eq(users.id, userId))
         .limit(1)
 
-    return NextResponse.json(authorizedUser[0])
+    return NextResponse.json(authorizedUser[0], {
+        headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0',
+      },
+    })
 }
 
 

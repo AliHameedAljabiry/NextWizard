@@ -19,11 +19,11 @@ const MyProfile = () => {
     const { data: currentUser, error, isLoading } = useSWR(
         isSigningOut ? null : '/api/auth/authorized-user', // Disable fetching during sign-out
         fetcher, 
-        {
-            refreshInterval: 3000,
-            revalidateOnFocus: true,
-            revalidateOnReconnect: true,
-        }
+        // {
+        //     refreshInterval: 3000,
+        //     revalidateOnFocus: true,
+        //     revalidateOnReconnect: true,
+        // }
     );
     
     const [open, setOpen] = useState(false);
@@ -38,31 +38,36 @@ const MyProfile = () => {
     console.log("Current User:", currentUser);
 
     const handleSignOut = async () => {
-        setIsSigningOut(true); // Disable SWR fetching
+        setIsSigningOut(true);
         try {
-            // Clear ALL SWR cache more aggressively
+            // Clear ALL SWR cache
             mutate(() => true, undefined, { revalidate: false });
             
-            // Call signOut and wait for it to complete
-            const result = await signOut({ 
-                redirect: false,
-                callbackUrl: '/'
+            // Clear localStorage and sessionStorage
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            // Clear all cookies (for this domain)
+            document.cookie.split(";").forEach(cookie => {
+                const eqPos = cookie.indexOf("=");
+                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=" + window.location.hostname;
             });
             
-            console.log("Sign out result:", result);
+            // Sign out
+            await signOut({ 
+                redirect: false 
+            });
             
-            // Force a hard redirect to clear everything
+            // Force complete page reload
             window.location.href = '/';
             
         } catch (error) {
             console.error("Error signing out:", error);
-            // Fallback: force hard navigation
             window.location.href = '/';
-        } finally {
-            setOpen(false);
         }
     };
-
     // Show loading state
     if (isLoading) {
         return (
