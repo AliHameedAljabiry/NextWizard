@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+   
+  }
+
+  
+  /* Default (light mode) */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    width: 1.5em;
+    filter: invert(0.1);
+    /*gray-ish*/opacity: 0.8;
+    -webkit-filter: invert(0.1);
+}
+
+  /* Dark mode override */
+  .dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* makes it white */
+    opacity: 1;
+  }
+
+  
+ .load div {
+  width: 50px;
+  height: 50px;
+  background-color: orchid;
+  margin-top: 50px !important;
+  margin: 5px;
+  animation-name: up-and-down;
+  animation-duration: 0.9s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+}
+.load .load-two {
+  animation-delay: 0.3s;
+}
+.load .load-three {
+  animation-delay: 0.6s;
+}
+
+@keyframes up-and-down {
+  to {
+      opacity: 0.2;
+      transform: translateY(-20px);
+      -webkit-transform: translateY(-20px);
+      -moz-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
+      -o-transform: translateY(-20px);
+}
+}
+
+
+  .hide-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    border-radius: 0px;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 0px;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+  .shiki {
+  font-family: 'Fira Code', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+
+
+}
+
+@layer components {
+  
+
+  
+  .gradient-vertical {
+    background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
+  }
+
+  .gradient-dark {
+    background: linear-gradient(270deg, #0b0e13 0%, #191e27 100%);
+  }
+  .gradient-wight {
+    background: linear-gradient(270deg, #f1f4fa 0%, #d1d4da 100%);
+  }
+
+  .gradient-blue {
+    background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+  }
+  .first-btn {
+    @apply dark:gradient-wight gradient-dark
+  }
+  .data-form {
+    @apply dark:gradient-dark
+  }
+  .all-users {
+    @apply dark:gradient-dark
+  }
+  .form-btn {
+    @apply gradient-blue text-white hover:bg-primary inline-flex min-h-14 w-full items-center justify-center rounded-md px-6 py-2 font-bold text-base !important;
+  }
+
+  .form-input {
+    @apply dark:bg-white bg-light-300 shadow w-full min-h-14 border-none text-base text-gray-700 font-normal placeholder:font-normal  placeholder:text-gray-700 focus-visible:ring-0 focus-visible:shadow-none !important;
+  }
+
+  /* Root */
+  .root-container {
+    @apply flex min-h-screen flex-1 flex-col bg-pattern bg-cover bg-top ;
+  }
+
+  /* Auth */
+  .auth-container {
+    @apply relative flex items-center justify-center min-h-screen  dark:text-light-100 sm:flex-row bg-light-300 dark:bg-[#0d1117];
+  }
+
+  .auth-form {
+    @apply dark:gradient-dark bg-[#FFFFFF] mx-auto  flex xs:w-2/3  md:w-1/2 xl:w-1/3 flex-col gap-6 rounded-lg p-10;
+  }
+
+  .sign-out {
+    @apply w-full max-w-xl rounded-2xl h-[500px] dark:shadow-[0_0_25px_rgba(0,0,0,0.8)] bg-[#FFFFFF] dark:bg-gradient-to-br dark:from-[#1a1a1a] dark:to-[#111] border   dark:border-gray-800 p-6 space-y-6 transform transition duration-500 hover:scale-[1.01]
+  }
+  
+  .bg-root-comp {
+   
+      background: rgb(0, 0, 0)
+    
+  }
+
+  /* Sidebar */
+    .sidebar {
+        @apply sticky left-0 top-0 flex h-dvh flex-col justify-between bg-white px-5 pb-5 pt-10;
+    }
+
+    .sidebar .logo {
+        @apply flex flex-row items-center gap-2 border-b border-dashed border-primary-admin/20 pb-10 max-md:justify-center;
+    }
+
+    .sidebar .logo h1 {
+        @apply text-2xl font-semibold text-primary-admin max-md:hidden;
+    }
+
+    .sidebar .link {
+        @apply flex flex-row items-center w-full gap-2 rounded-lg px-5 py-3.5 max-md:justify-center;
+    }
+
+    .sidebar .link p {
+        @apply text-base font-medium max-md:hidden;
+    }
+
+    .sidebar .user {
+        @apply my-8 flex w-full flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-sm max-md:px-2;
+    }
+  
+    .main-content-container {
+        @apply flex  flex-1 flex-col  dark:dark:bg-[#0d1117] bg-light-300 p-3 xs:p-10;
+    }
+    .admin-container {
+        @apply flex w-[calc(100%-264px)] flex-1 flex-col bg-light-300 p-5 xs:p-10;
+    }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+     input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus {
+    background-color: #131212 !important;
+    color: #d1d5db !important; /* Tailwind's text-gray-300 */
+    -webkit-text-fill-color: #d1d5db !important;
+    transition: background-color 5000s ease-in-out 0s;
+    caret-color: #d1d5db;
+    box-shadow: 0 0 0px 1000px #131212 inset !important;
+  }
+  }
+}
