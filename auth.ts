@@ -29,11 +29,29 @@ declare module "next-auth" {
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  // Netlify-specific fixes
-  trustHost: true, // Crucial for Netlify deployment
+  // NETLIFY-SPECIFIC FIXES
+  trustHost: true,
   useSecureCookies: process.env.NODE_ENV === "production",
   
-  session: { strategy: "jwt" },
+  // Cookie configuration for Netlify
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === "production",
+        domain: process.env.NODE_ENV === "production" ? '.netlify.app' : undefined
+      }
+    }
+  },
+  
+  session: { 
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  
   providers: [
     GitHub({
       profile(profile) {
@@ -72,7 +90,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (user.length === 0) return null;
         
         if (user[0].password === "-" || user[0].password === "OAUTH") {
-          return null; // prevent login via credentials if user is OAuth-only
+          return null;
         }
 
         const isValidPassword = await compare(
@@ -98,8 +116,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
 
   callbacks: {
-    // REMOVED the authorized callback - let middleware handle routing
-
     async signIn({ user, account, profile }) {
       if (account?.provider !== "credentials") {
         const existingUsers = await db
@@ -112,8 +128,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           await db.insert(users).values({
             email: user.email!,
             fullName: user.name || "No Name",
-            password: "-", // Dummy password since OAuth doesn't use passwords
-            companyName: "Unknown", // You may update this via onboarding later
+            password: "-",
+            companyName: "Unknown",
             role: "USER",
             status: "PENDING",
             image: user.image,      

@@ -37,37 +37,41 @@ const MyProfile = () => {
 
     console.log("Current User:", currentUser);
 
-    const handleSignOut = async () => {
-        setIsSigningOut(true);
-        try {
-            // Clear ALL SWR cache
-            mutate(() => true, undefined, { revalidate: false });
-            
-            // Clear localStorage and sessionStorage
-            localStorage.clear();
-            sessionStorage.clear();
-            
-            // Clear all cookies (for this domain)
-            document.cookie.split(";").forEach(cookie => {
-                const eqPos = cookie.indexOf("=");
-                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=" + window.location.hostname;
-            });
-            
-            // Sign out
-            await signOut({ 
-                redirect: false 
-            });
-            
-            // Force complete page reload
-            window.location.href = '/';
-            
-        } catch (error) {
-            console.error("Error signing out:", error);
-            window.location.href = '/';
-        }
-    };
+   const handleSignOut = async () => {
+    try {
+        // Step 1: Clear all client-side cache
+        mutate(() => true, undefined, { revalidate: false });
+        localStorage.clear();
+        sessionStorage.clear();
+        
+        // Step 2: Call NextAuth signOut
+        await signOut({ 
+            redirect: false,
+            callbackUrl: '/'
+        });
+        
+        // Step 3: Clear NextAuth cookies manually
+        document.cookie.split(';').forEach(cookie => {
+            const name = cookie.trim().split('=')[0];
+            if (name.includes('next-auth')) {
+                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.netlify.app;`;
+                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+            }
+        });
+        
+        // Step 4: Force hard redirect with cache busting
+        const timestamp = new Date().getTime();
+        window.location.href = `/?t=${timestamp}`;
+        
+    } catch (error) {
+        console.error("Error signing out:", error);
+        // Ultimate fallback
+        window.location.href = '/';
+    }
+};
+
+
+
     // Show loading state
     if (isLoading) {
         return (
