@@ -8,8 +8,11 @@
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "https://nextwizard.netlify.app/:splat"
+  status = 301
+  force = true
+  conditions = { Host = ["68e5626f0d34670008704a91--nextwizard.netlify.app"] }
+
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
