@@ -39,16 +39,13 @@ const MyProfile = () => {
     console.log("Current User:", currentUser);
 
     const handleSignOut = async () => {
-    const [isSigningOut, setIsSigningOut] = useState(false);
-        setIsSigningOut(true)
+       setIsSigningOut(true);
         try {
-            await signOut({ redirect: false });
-            router.push('/');
-            setTimeout(() => {router.refresh()}, 500)
+            await signOut({ callbackUrl: "/" });
         } catch (error) {
             console.error("Error signing out:", error);
         }
-        setIsSigningOut(false)
+        setIsSigningOut(false);
     };
 
 
