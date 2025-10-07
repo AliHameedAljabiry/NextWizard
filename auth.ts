@@ -29,13 +29,11 @@ declare module "next-auth" {
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  // Netlify-specific fixes
+  trustHost: true, // Crucial for Netlify deployment
+  useSecureCookies: process.env.NODE_ENV === "production",
   
-  
-  session: { 
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
-  
+  session: { strategy: "jwt" },
   providers: [
     GitHub({
       profile(profile) {
@@ -74,7 +72,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (user.length === 0) return null;
         
         if (user[0].password === "-" || user[0].password === "OAUTH") {
-          return null;
+          return null; // prevent login via credentials if user is OAuth-only
         }
 
         const isValidPassword = await compare(
@@ -100,6 +98,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
 
   callbacks: {
+   
+
     async signIn({ user, account, profile }) {
       if (account?.provider !== "credentials") {
         const existingUsers = await db
@@ -112,8 +112,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           await db.insert(users).values({
             email: user.email!,
             fullName: user.name || "No Name",
-            password: "-",
-            companyName: "Unknown",
+            password: "-", // Dummy password since OAuth doesn't use passwords
+            companyName: "Unknown", // You may update this via onboarding later
             role: "USER",
             status: "PENDING",
             image: user.image,      
