@@ -42,7 +42,7 @@ const MyProfile = () => {
     const [isSigningOut, setIsSigningOut] = useState(false);
         setIsSigningOut(true)
         try {
-            await signOut({ redirect: false });
+            await signOut({ callbackUrl: "/" });
             router.push('/');
             setTimeout(() => {router.refresh()}, 500)
         } catch (error) {
