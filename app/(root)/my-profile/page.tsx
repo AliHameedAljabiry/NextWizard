@@ -19,11 +19,11 @@ const MyProfile = () => {
     const { data: currentUser, error, isLoading } = useSWR(
         isSigningOut ? null : '/api/auth/authorized-user', // Disable fetching during sign-out
         fetcher, 
-        // {
-        //     refreshInterval: 3000,
-        //     revalidateOnFocus: true,
-        //     revalidateOnReconnect: true,
-        // }
+        {
+            refreshInterval: 3000,
+            revalidateOnFocus: true,
+            revalidateOnReconnect: true,
+        }
     );
     
     const [open, setOpen] = useState(false);
@@ -39,37 +39,22 @@ const MyProfile = () => {
 
    const handleSignOut = async () => {
     try {
-        // Step 1: Clear all client-side cache
+        // Call the signout API endpoint directly
+        await fetch('/api/auth/signout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
         mutate(() => true, undefined, { revalidate: false });
-        localStorage.clear();
-        sessionStorage.clear();
-        
-        // Step 2: Call NextAuth signOut
-        await signOut({ 
-            redirect: false,
-            callbackUrl: '/'
-        });
-        
-        // Step 3: Clear NextAuth cookies manually
-        document.cookie.split(';').forEach(cookie => {
-            const name = cookie.trim().split('=')[0];
-            if (name.includes('next-auth')) {
-                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.netlify.app;`;
-                document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-            }
-        });
-        
-        // Step 4: Force hard redirect with cache busting
-        const timestamp = new Date().getTime();
-        window.location.href = `/?t=${timestamp}`;
-        
-    } catch (error) {
-        console.error("Error signing out:", error);
-        // Ultimate fallback
         window.location.href = '/';
-    }
-};
-
+        
+        } catch (error) {
+            console.error("Error signing out:", error);
+            window.location.href = '/';
+        }
+    };
 
 
     // Show loading state
