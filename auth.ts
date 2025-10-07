@@ -30,8 +30,20 @@ declare module "next-auth" {
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   // Netlify-specific fixes
-  trustHost: true, // Crucial for Netlify deployment
+  trustHost: true,
   useSecureCookies: process.env.NODE_ENV === "production",
+  cookies: {
+    sessionToken: {
+      name: `__Secure-next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        domain: process.env.NODE_ENV === "production" ? "yourapp.netlify.app" : undefined,
+      },
+    },
+  },
   
   session: { strategy: "jwt" },
   providers: [

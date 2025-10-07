@@ -35,63 +35,21 @@ const MyProfile = () => {
             router.push('/sign-in');
         }
     }, [currentUser, isLoading, router, isSigningOut]);
-
+    
     console.log("Current User:", currentUser);
 
     const handleSignOut = async () => {
-    try {
-        // 1. Clear NextAuth session first
-        await signOut({ 
-            redirect: false,
-            callbackUrl: '/'
-        });
-
-        // 2. Clear ALL site-specific storage
-        // Local Storage
-        localStorage.clear();
-        
-        // Session Storage
-        sessionStorage.clear();
-        
-        // 3. Clear IndexedDB (if used)
-        if ('indexedDB' in window) {
-            const databases = await window.indexedDB.databases();
-            databases.forEach(db => {
-                if (db.name) {
-                    window.indexedDB.deleteDatabase(db.name);
-                }
-            });
+    const [isSigningOut, setIsSigningOut] = useState(false);
+        setIsSigningOut(true)
+        try {
+            await signOut({ redirect: false });
+            router.push('/');
+            setTimeout(() => {router.refresh()}, 500)
+        } catch (error) {
+            console.error("Error signing out:", error);
         }
-        
-        // 4. Clear all cookies for your domain
-        const domain = window.location.hostname;
-        const cookies = document.cookie.split(';');
-        
-        cookies.forEach(cookie => {
-            const eqPos = cookie.indexOf('=');
-            const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
-            
-            // Clear cookie for all paths and domains
-            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=${domain}`;
-            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.${domain}`;
-        });
-
-        // 5. Clear SWR cache
-        mutate(() => true, undefined, { revalidate: false });
-
-        // 6. Force hard redirect with cache busting
-        const timestamp = new Date().getTime();
-        window.location.href = `/?cacheBust=${timestamp}`;
-
-    } catch (error) {
-        console.error("Error signing out:", error);
-        // Ultimate fallback - clear everything and redirect
-        localStorage.clear();
-        sessionStorage.clear();
-        window.location.href = '/';
-    }
-};
+        setIsSigningOut(false)
+    };
 
 
     // Show loading state
