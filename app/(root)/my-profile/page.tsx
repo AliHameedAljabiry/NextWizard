@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { gitInitials } from '@/lib/utils';
 import { mutate } from 'swr';
+import Loading from '@/app/loading';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
@@ -37,22 +38,13 @@ const MyProfile = () => {
 
     console.log("Current User:", currentUser);
 
-   const handleSignOut = async () => {
-    try {
-        // Call the signout API endpoint directly
-        await fetch('/api/auth/signout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        
-        mutate(() => true, undefined, { revalidate: false });
-        window.location.href = '/';
-        
+    const handleSignOut = async () => {
+        try {
+            await signOut({ redirect: false });
+            router.push('/');
+            setTimeout(() => {router.refresh()}, 500)
         } catch (error) {
             console.error("Error signing out:", error);
-            window.location.href = '/';
         }
     };
 
@@ -60,9 +52,7 @@ const MyProfile = () => {
     // Show loading state
     if (isLoading) {
         return (
-            <div className="min-h-screen flex items-center justify-center p-4">
-                <div className="text-center">Loading...</div>
-            </div>
+            <Loading/>
         );
     }
 
