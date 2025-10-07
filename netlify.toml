@@ -11,7 +11,8 @@
   to = "https://nextwizard.netlify.app/:splat"
   status = 301
   force = true
-  conditions = { Host = ["main--nextwizard.netlify.app"] }
+  conditions = { Host = ["main--nextwizard.netlify.app", "68e56a6a091f590008aa44da--nextwizard.netlify.app"] }
+
 
 
 [[plugins]]
