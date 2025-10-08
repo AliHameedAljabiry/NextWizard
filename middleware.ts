@@ -6,6 +6,7 @@ export default auth((req) => {
   
   // Public routes that don't require authentication
   const publicPaths = [
+    "/",
     "/sign-in",
     "/sign-up",
     "/api/auth",
