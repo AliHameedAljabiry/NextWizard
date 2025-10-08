@@ -30,8 +30,8 @@ declare module "next-auth" {
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   // Netlify-specific fixes
-  trustHost: true,
-  useSecureCookies: process.env.NODE_ENV === "production",
+  // trustHost: true,
+  // useSecureCookies: process.env.NODE_ENV === "production",
   
   
 
