@@ -29,7 +29,7 @@ export async function GET(req: Request) {
         return NextResponse.json(allUsers)
 
     } catch (error) {
-        console.error("API /api/test error:", error);
+     
         return NextResponse.json(
         { error: "Internal Server Error" },
         { status: 500 }

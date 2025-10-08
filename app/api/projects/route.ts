@@ -19,7 +19,7 @@ export async function  GET(req: Request) {
         return NextResponse.json(allProjects)
 
     } catch (error) {
-       console.error("API /api/admin/projects error:", error);
+      
 
         return NextResponse.json(
         { error: "Internal Server Error" },

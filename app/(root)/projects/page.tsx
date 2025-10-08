@@ -12,7 +12,7 @@ const Page = async () => {
   const session = await auth()
     if (!session) redirect("/sign-in");
   const allProjects = await db.select().from(projects).orderBy(desc(projects.createdAt))
-  console.log(allProjects)
+
 
 const initialData = allProjects as any;
   return (

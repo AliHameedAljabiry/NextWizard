@@ -147,7 +147,7 @@ export default function AdminHomePage() {
 
   if (isLoading) return <div><Loading/></div>
   
-  console.log('Recent category:', recentcategory)
+
   if (statsError || !stats) return <div>Error loading admin dashboard</div>
 
   return (

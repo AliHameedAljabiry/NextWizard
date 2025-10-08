@@ -72,7 +72,6 @@ export const updateStep = async (form: StepFormValues) => {
       message: "Step updated successfully",
     };
   } catch (error) {
-    console.error("Error in updateStep:", error);
     return {
       success: false,
       message: "An error occurred while updating the step",

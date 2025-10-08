@@ -73,7 +73,7 @@ export const createStep = async (form: StepFormValues) => {
       message: "Step created successfully",
     };
   } catch (error) {
-    console.error("Error in createStep:", error);
+ 
     return {
       success: false,
       message: "An error occurred while creating the step",

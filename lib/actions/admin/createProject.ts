@@ -21,7 +21,7 @@ export const createProject = async (form: StepFormValues) => {
       
     });
   } catch (error) {
-    console.error(error);
+ 
     throw new Error("Failed to create project");
   }
 };

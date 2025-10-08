@@ -36,7 +36,7 @@ const MyProfile = () => {
         }
     }, [currentUser, isLoading, router, isSigningOut]);
     
-    console.log("Current User:", currentUser);
+
 
     const handleSignOut = async () => {
        setIsSigningOut(true);

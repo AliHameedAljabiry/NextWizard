@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: { partSlug: string } })
     
   // get the next part name
   const allParts = await db.select().from(parts).orderBy(parts.order)
-  console.log('allParts', allParts)
+
   const partIndex = allParts.findIndex(part => part.slug === partSlug)
   const nextPart = allParts[partIndex + 1]
   const previousPart = allParts[partIndex - 1]

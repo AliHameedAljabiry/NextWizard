@@ -65,7 +65,7 @@ const AuthForm = <T extends FieldValues> ({type, schema, defaultValues, onSubmit
             await signIn("google");
             router.push('/docs'); 
         } catch (error) {
-            console.error("Google Sign-In Error:", error);
+            
             toast({
                 title: "Error Signing In with Google",
                 description: "An unexpected error occurred. Please try again.",
@@ -79,7 +79,7 @@ const AuthForm = <T extends FieldValues> ({type, schema, defaultValues, onSubmit
             await signIn("github");
             router.push('/docs');
         } catch (error) {
-            console.error("GitHub Sign-In Error:", error);
+          
             toast({
                 title: "Error Signing In with GitHub",
                 description: "An unexpected error occurred. Please try again.",

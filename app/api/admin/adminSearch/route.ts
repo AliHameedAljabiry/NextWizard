@@ -78,7 +78,7 @@ export async function GET(req: Request) {
       users: foundUsers,
     });
   } catch (error) {
-    console.error("Search error:", error);
+
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }

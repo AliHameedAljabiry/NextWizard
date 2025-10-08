@@ -42,7 +42,7 @@ export async function POST(req: Request) {
 
     return Response.json({ message: 'Password updated successfully' }, { status: 200 });
   } catch (error) {
-    console.error('[RESET_PASSWORD_ERROR]', error);
+
     return Response.json({ message: 'Something went wrong' }, { status: 500 });
   }
 }
