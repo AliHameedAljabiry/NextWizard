@@ -9,7 +9,7 @@ import React, { ReactNode } from 'react'
 const DocsLayout = async ({children}: {children: ReactNode}) => {
   const session = await auth()
   const baseUrl = process.env.NEXT_PUBLIC_PROD_API_ENDPOINT || 'https://nextwizard.alihameeddev.xyz';
-  if (!session?.user?.id) redirect(`${baseUrl}/sign-in`)
+  if (!session?.user?.id) redirect(`/sign-in`)
     
   const categoriesWithParts = await fetchSidebarData();
   return (
