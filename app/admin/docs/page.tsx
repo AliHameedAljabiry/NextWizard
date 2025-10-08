@@ -3,6 +3,8 @@ import { categories, parts, steps } from "@/database/schema"
 import { eq } from "drizzle-orm"
 import Content from "@/components/admin/Docs";
 
+export const dynamic = 'force-dynamic';
+
 const Page = async () => {
   // Fetch all categories
   const cats = await db.select().from(categories);

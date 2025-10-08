@@ -3,6 +3,8 @@ import { db } from "@/database/drizzle"
 import { users } from "@/database/schema"
 import { desc } from "drizzle-orm";
 
+export const dynamic = 'force-dynamic';
+
 const AllUsers = async () => {
   const allUsers = await 
     db.select({

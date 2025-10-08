@@ -1,7 +1,6 @@
 "use client";
 
 import useSWR from 'swr';
-import { signOut } from "next-auth/react";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
@@ -10,7 +9,6 @@ import { DialogTrigger } from '@radix-ui/react-dialog';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { gitInitials } from '@/lib/utils';
-import { mutate } from 'swr';
 import Loading from '@/app/loading';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
@@ -39,13 +37,23 @@ const MyProfile = () => {
 
 
     const handleSignOut = async () => {
-       setIsSigningOut(true);
+        setIsSigningOut(true);
         try {
-            await signOut({ callbackUrl: "/" });
+            const response = await fetch('/api/auth/signout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                router.push('/');
+                router.refresh();
+            }
         } catch (error) {
             console.error("Error signing out:", error);
+            setIsSigningOut(false);
         }
-        setIsSigningOut(false);
     };
 
 
