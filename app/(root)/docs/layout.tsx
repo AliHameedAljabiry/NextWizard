@@ -9,7 +9,7 @@ import React, { ReactNode } from 'react'
 const DocsLayout = async ({children}: {children: ReactNode}) => {
   const session = await auth()
   
-  if (!session?.user?.id) redirect(`/sign-in/?callbackUrl=https%3A%2F%2Fnextwizard.alihameeddev.xyz%2F`)
+  if (!session?.user?.id) redirect(`/sign-in`)
     
   const categoriesWithParts = await fetchSidebarData();
   return (

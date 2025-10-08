@@ -8,8 +8,8 @@ import config from "@/lib/config";
 const AuthLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
 
-  const baseUrl = process.env.NEXT_PUBLIC_PROD_API_ENDPOINT || 'https://nextwizard.netlify.app';
-  if (session) redirect(`${baseUrl}/docs`)
+  
+  if (session) redirect(`/docs`)
 
 
   return (
