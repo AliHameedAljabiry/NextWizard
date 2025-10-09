@@ -25,7 +25,6 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
       .limit(1);
 
     if (!user.length) {
-      console.warn("User from session not found in DB");
       return;
     }
 
