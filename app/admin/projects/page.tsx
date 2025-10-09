@@ -4,6 +4,8 @@ import { projects } from '@/database/schema'
 import { desc } from 'drizzle-orm'
 import React from 'react'
 
+export const dynamic = 'force-dynamic';
+
 const Page = async () => {
   const allProjects = await db.select().from(projects).orderBy(desc(projects.createdAt))
   

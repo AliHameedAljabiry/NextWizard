@@ -9,6 +9,8 @@ import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
+export const dynamic = 'force-dynamic';
+
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
  const projectId = (await params).id
   const session = await auth()

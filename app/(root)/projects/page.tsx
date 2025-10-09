@@ -8,6 +8,8 @@ import { desc } from 'drizzle-orm'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
+export const dynamic = 'force-dynamic';
+
 const Page = async () => {
   const session = await auth()
     if (!session) redirect("/sign-in");

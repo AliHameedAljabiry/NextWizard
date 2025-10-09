@@ -9,7 +9,7 @@ import { eq } from 'drizzle-orm';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from '@/components/Arrow3D';
 
-
+export const dynamic = 'force-dynamic';
 
 export default async function Page({ params }: { params: { partSlug: string } }) {
   const partSlug = (await params).partSlug
