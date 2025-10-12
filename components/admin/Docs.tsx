@@ -111,8 +111,8 @@ const Content = ({ initialData }: { initialData: any}) => {
                             <Link className='overflow-hidden text-ellipsis whitespace-nowrap pr-3' href={`docs/stepDetails/${step.id}`}>{step.title}</Link>
                          </div>
                           <div className='flex flex-row items-center  justify-center gap-3'>
-                            <Link title='Step Details' href={`docs/stepDetails/${step.id}`}><FileText className='w-5 '/></Link>
-                            <Link title="Update Step" href={`docs/update/${step.id}`}><FilePen className='text-gray-300 size-5'/></Link>
+                            <Link title='Step Details' href={`stepDetails/${step.id}`}><FileText className='w-5 '/></Link>
+                            <Link title="Update Step" href={`update/${step.id}`}><FilePen className='text-gray-300 size-5'/></Link>
                             <DeleteStep stepId={step.id} onDelete={mutate} title={step.title}/>
                           </div>
                         </li>
