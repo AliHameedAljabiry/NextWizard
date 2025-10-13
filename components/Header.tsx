@@ -37,18 +37,17 @@ const Header = ({ session }: HeaderProps) => {
   };
 
   return (
-    <div className=" flex max-h-20 w-full items-center justify-between p-4 text-black dark:text-light-600 bg-[#FFFFFF] dark:bg-[#050505] shadow-md border-b dark:border-gray-800">
+    <div className=" flex max-h-20 w-full items-center justify-between p-2 xs:p-4 text-black dark:text-light-600 bg-[#FFFFFF] dark:bg-[#050505] shadow-md border-b dark:border-gray-800">
       <div className='flex flex-row items-center justify-between gap-3 xl:gap-20'>
         <Link href="/" className="text-2xl flex flex-row items-center ml-5 sm:ml-12 md:ml-0">
           <Image
-            src="icons/nextjs-icon.svg"
-            alt="logo"
-            className="h-auto invert dark:invert-0 min-w-[40px]"
+            src="/icons/logo1.svg"
+            alt="Logo"
+            className="h-auto invert dark:invert-0 min-w-[40px] -ml-5 md:hidden rounded-full p-0.5 border border-gray-300 dark:border-gray-700 shadow-[0_0_35px_rgba(147,51,234,0.3)] transition-all duration-300"
             width={50}
             height={50}
           />
-          <h1 className="font-michroma -ml-3 z-20 hidden md:block">extWizard</h1>
-          <h1 className="font-michroma font-bold -ml-3 -mt-1 z-20 md:hidden">W</h1>
+          <h1 className="font-michroma -ml-3 xs:ml-0 z-20 hidden md:block ">NextWizard</h1>
         </Link>
 
         {/* Desktop Navigation - Hidden on medium and smaller screens */}
@@ -140,7 +139,7 @@ const Header = ({ session }: HeaderProps) => {
                     className='object-cover rounded-full' />
                 ) : (
                   <AvatarFallback className="bg-amber-100 text-black text-4xl font-bold">
-                    {gitInitials(currentUser?.fullName)}
+                    {gitInitials(currentUser?.email || currentUser?.fullName )}
                   </AvatarFallback>
                 )}
               </Avatar>

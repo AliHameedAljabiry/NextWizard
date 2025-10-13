@@ -18,7 +18,7 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
             <div className="flex flex-row items-center justify-center mr-32">
               <Link href="/" className="text-2xl flex flex-row items-center relative ">
                 <Image
-                      src="icons/nextjs-icon.svg"
+                      src="/icons/nextjs-icon.svg"
                       alt="logo"
                       className="h-auto invert dark:invert-0 "
                       width={50}

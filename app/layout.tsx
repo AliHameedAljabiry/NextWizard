@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { IBM_Plex_Sans, Bebas_Neue, Michroma } from "next/font/google";
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { AuthProviders } from '@/components/Providers';
 
 
 
@@ -72,9 +73,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
       </head>
        <body className={`${ibmPlexSans.className} ${bebasNeue.variable} ${michroma.variable} antialiased`}>
-        <ThemeProvider >
-          {children}
-        </ThemeProvider>
+        <AuthProviders>
+          <ThemeProvider >
+            {children}
+          </ThemeProvider>
+        </AuthProviders>
           <Toaster />
         </body>   
     </html>

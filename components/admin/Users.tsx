@@ -73,7 +73,7 @@ const Users  = ({initialData}: {initialData: any}) => {
                 <div className="flex items-center gap-3">
                   <Avatar>
                     <AvatarFallback className='bg-amber-100 text-2xl'>
-                      {gitInitials(user.fullName)}
+                      {gitInitials(user.username || user?.fullName || user?.email)}
                     </AvatarFallback>
                   </Avatar>
                   <div className='flex flex-col text-sm min-w-0 flex-1'>
@@ -160,7 +160,7 @@ const Users  = ({initialData}: {initialData: any}) => {
                             className='object-cover rounded-full' />
                         ) : (
                           <AvatarFallback className="bg-amber-100 text-black text-4xl font-bold">
-                            {gitInitials(user?.fullName)}
+                            {gitInitials(user?.email || user?.fullName || user?.email)}
                           </AvatarFallback>
                         )}
                       </Avatar>
@@ -184,7 +184,7 @@ const Users  = ({initialData}: {initialData: any}) => {
                       day: 'numeric'
                     })}
                   </td>
-                  <td className={cn("px-4 py-2 text-center text-sm flex justify-center ")}>
+                  <td className={cn("px-4 py-2 text-center text-sm flex justify-center  mb-4 ")}>
                     <div className={cn("w-fit rounded-md", user.role === 'ADMIN' 
                           ? 'text-[#027A48] bg-[#ECFDF3]' 
                           : 'text-[#C11574] bg-[#FDF2FA]')}>

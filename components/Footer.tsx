@@ -31,7 +31,7 @@ function Footer() {
             <div>
                 <Link href="/" className="text-xl lg:text-2xl flex flex-row items-center relative -ml-5">
                   <Image
-                        src="icons/nextjs-icon.svg"
+                        src="/icons/nextjs-icon.svg"
                         alt="logo"
                         className="h-auto invert dark:invert-0 "
                         width={50}
@@ -66,15 +66,15 @@ function Footer() {
               <h3 className="font-semibold mb-4">Connect</h3>
               <div className="flex space-x-4 ">
                 <Link href={gmailLink} target="_blank" rel="noopener noreferrer">
-                    <Image src="images/gmail.png" alt="gmail" className="gmail" width={30} height={30}/>
+                    <Image src="/images/gmail.png" alt="gmail" className="gmail" width={30} height={30}/>
                 </Link>
 
                 <Link href={linkedinUrl} target="_blank" rel="noopener noreferrer">
-                    <Image src="icons/linkedIn.svg" alt="gmail" className="gmail" width={30} height={30}/>
+                    <Image src="/icons/linkedIn.svg" alt="gmail" className="gmail" width={30} height={30}/>
                 </Link>
 
                 <Link href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                    <Image src="icons/whatsapp.svg" alt="gmail" className="gmail" width={30} height={30}/>
+                    <Image src="/icons/whatsapp.svg" alt="gmail" className="gmail" width={30} height={30}/>
                 </Link>
               </div>
             </div>

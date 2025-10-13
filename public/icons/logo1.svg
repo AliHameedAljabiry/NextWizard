@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NextWizard logo (transparent)">
+  <!-- Transparent background -->
+  <!-- Monogram strokes -->
+  <g transform="translate(0,0)" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="22">
+    <!-- N -->
+    <path d="M48 190 V66 L120 174 V66" />
+    <!-- W -->
+    <path d="M120 174 L152 98 L184 174 L208 98 V190" />
+  </g>
+</svg>

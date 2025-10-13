@@ -63,7 +63,7 @@ const { data: currentUser } = useSWR('/api/auth/authorized-user', fetcher, {
       <div className='mt-72 flex  flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-sm max-md:px-2'>
         <Avatar>
           <AvatarFallback className='bg-amber-100 dark:text-black test-2xl'>
-            {gitInitials(currentUser?.fullName || '')}
+            {gitInitials(currentUser?.username || currentUser?.fullName || currentUser?.email)}
           </AvatarFallback>
         </Avatar>
 

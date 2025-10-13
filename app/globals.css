@@ -26,6 +26,9 @@
     opacity: 1;
   }
 
+  .docs_bg {
+    background-color: hsl(230 54% 5%)!important;
+  }
   
  .load div {
   width: 50px;

@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import Scene3D from '@/components/Scene3D';
 
 // Dynamically import only the motion.div to avoid SSR issues
 const MotionDiv = dynamic(() =>
@@ -13,6 +14,12 @@ const MotionDiv = dynamic(() =>
 export default function Home() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 dark:bg-[#0d1117] bg-light-300 overflow-hidden">
+
+      {/* 3D Background */}
+      <div className="absolute inset-0 opacity-20 dark:opacity-30">
+        <Scene3D />
+      </div>
+
       {/* Animated Shape (floating orb) */}
       <MotionDiv
         initial={{ y: 60, opacity: 0 }}

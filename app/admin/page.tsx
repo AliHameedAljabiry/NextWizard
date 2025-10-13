@@ -40,7 +40,7 @@ const RecentUsersPreview = ({ users }: { users: any[] }) => (
                   className='object-cover rounded-full' />
               ) : (
                 <AvatarFallback className="bg-amber-100 text-black text-4xl font-bold">
-                  {gitInitials(user?.fullName)}
+                  {gitInitials(user?.username || user?.fullName || user?.email)}
                 </AvatarFallback>
               )}
             </Avatar>

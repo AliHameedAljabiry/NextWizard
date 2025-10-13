@@ -77,8 +77,8 @@ const ProjectsAdmin = ({initialData}: {initialData: Project}) => {
                 </thead>
                 <tbody>
                     {data.map((project: Project) => (
-                        <tr key={project.id} className='border-b '>
-                            <td className='px-4 py-2 text-dark-200 dark:text-white text-sm'>{project.title}</td>
+                        <tr key={project.id} className='border-b border-gray-200 dark:border-gray-700'>
+                            <td className='p-4 text-dark-200 dark:text-white text-sm'>{project.title}</td>
                             <td className='px-4 py-2 text-center text-dark-200 dark:text-white text-sm'>{project.author}</td>
                             <td className='px-4 py-2 text-center text-dark-200 dark:text-white text-sm'>
                                 {project.publishDate ? (

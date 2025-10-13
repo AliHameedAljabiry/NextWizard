@@ -89,7 +89,7 @@ const MyProfile = () => {
                                 />
                             ) : (
                                 <AvatarFallback className="bg-amber-100 text-black text-6xl font-bold">
-                                    {gitInitials(currentUser?.fullName)}
+                                    {gitInitials(currentUser?.email || currentUser?.fullName )}
                                 </AvatarFallback>
                             )}
                         </Avatar>
