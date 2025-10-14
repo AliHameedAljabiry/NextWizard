@@ -113,12 +113,12 @@ const Header = ({ session }: HeaderProps) => {
         {!currentUser?.id && (
           <>
             <Link href="/sign-in" className={cn(
-              'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary',
+              'text-sm ml-2  sm:text-lg whitespace-nowrap text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary',
               pathname === '/login' && 'text-blue-100 dark:text-primary underline underline-offset-8')}>
               Sign in
             </Link>
             <Link href="/sign-up" className={cn(
-              'text-lg text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary', 
+              'text-sm sm:text-lg hidden sm:block whitespace-nowrap  text-gray-700 dark:text-gray-100 font-medium hover:text-blue-100 hover:underline underline-offset-8 dark:hover:text-primary', 
               pathname === '/register' && 'text-blue-100 dark:text-primary underline underline-offset-8')}>
               Sign up
             </Link>

@@ -144,7 +144,7 @@ const AuthForm = <T extends FieldValues> ({type, schema, defaultValues, onSubmit
                 </form>
             </Form>
 
-            <p className={cn("text-center text-base font-medium flex flex-row items-center  gap-2 ",isSignIn ?"justify-between" : "justify-center")}>
+            <p className={cn("text-center text-sm sm:text-lg font-medium whitespace-nowrap flex flex-row items-center  gap-2 ",isSignIn ?"justify-between" : "justify-center")}>
                 <span>{isSignIn ? <Link href="/forgot-password" className={cn(isSignIn ? "underline text-gray-700 dark:text-primary" : "dark:text-gray-300")}>Forgot your password?</Link>: "Already have an account? "}</span>
 
                 <Link
